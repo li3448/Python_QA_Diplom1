@@ -10,8 +10,8 @@ class TestBurger:
         burger = Burger()
         bun = Bun("булочка с кунжутом", 100)
         burger.set_buns(bun)
-        expected_result = burger.bun.get_name()
-        assert expected_result == "булочка с кунжутом"
+        actual_result = burger.bun.get_name()
+        assert actual_result == "булочка с кунжутом"
 
     @pytest.mark.parametrize('ingredient_type, name, price', [
         [ingredient_types.INGREDIENT_TYPE_SAUCE, 'garlic', 8.5],
@@ -49,8 +49,8 @@ class TestBurger:
         burger.set_buns(bun)
         ingredient = Ingredient(ingredient_types.INGREDIENT_TYPE_FILLING, 'pickles', 12.5)
         burger.add_ingredient(ingredient)
-        expected_result = burger.get_price()
-        assert expected_result == 212.5
+        actual_result = burger.get_price()
+        assert actual_result == 212.5
 
     def test_get_receipt_returned_correct_receipt_burger(self):
         burger = Burger()
@@ -58,8 +58,8 @@ class TestBurger:
         burger.set_buns(bun)
         ingredient = Ingredient(ingredient_types.INGREDIENT_TYPE_FILLING, 'pickles', 12.5)
         burger.add_ingredient(ingredient)
-        expected_result = burger.get_receipt()
-        assert expected_result == '(==== булочка с кунжутом ====)\n''= filling pickles =\n''(==== булочка с кунжутом ====)\n''\n''Price: 212.5'
+        actual_result = burger.get_receipt()
+        assert actual_result == '(==== булочка с кунжутом ====)\n''= filling pickles =\n''(==== булочка с кунжутом ====)\n''\n''Price: 212.5'
 
 
 
