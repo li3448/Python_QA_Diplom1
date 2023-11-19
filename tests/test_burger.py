@@ -9,3 +9,7 @@ class TestBurger:
         my_burger.set_buns(my_bun)
         assert my_burger.get_price() == 200
 
+    def test_add_ingredient_added_successfully(self):
+
+
+
