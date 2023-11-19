@@ -1,8 +1,8 @@
 import pytest
-import ingredient_types
-from burger import Burger
-from bun import Bun
-from ingredient import Ingredient
+from praktikum import ingredient_types
+from praktikum.bun import Bun
+from praktikum.burger import Burger
+from praktikum.ingredient import Ingredient
 
 
 class TestBurger:

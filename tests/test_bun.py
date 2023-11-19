@@ -1,4 +1,4 @@
-from bun import Bun
+from praktikum.bun import Bun
 
 
 class TestBun:
@@ -11,6 +11,3 @@ class TestBun:
         bun = Bun("булочка с кунжутом", 100)
         expected_result = bun.get_price()
         assert expected_result == 100
-
-
-
