@@ -131,7 +131,7 @@ coverage.xml
 *.py,cover
 .hypothesis/
 .pytest_cache/
-praktikum/.pytest_cache/
+praktikum/.pytest_cache/S
 tests/.pytest_cache/
 cover/
 
