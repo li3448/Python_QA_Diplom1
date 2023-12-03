@@ -1,14 +1,13 @@
 import pytest
-from praktikum import bun
 from praktikum.bun import Bun
 
 
-class TestingBun(Bun):
+class TestingBun:
 
-    def __init__(self, name, price):
-        super().__init__(name, price)
-    def test_name_valid(self):
+    def test_get_name(self):
         bun = Bun('Супербулка', 200)
-        #self.name = 'Супербулка'
-        print(bun.get_name())
         assert bun.get_name() == 'Супербулка'
+
+    def test_get_price(self):
+        bun = Bun('Супербулка', 200.752)
+        assert bun.get_price() == 200.752
