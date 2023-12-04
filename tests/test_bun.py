@@ -1,9 +1,11 @@
-from data import TestData
+from praktikum.bun import Bun
 
 
 class TestBun:
     def test_bun_get_name(self):
-        assert TestData.bun.get_name() == 'Сэндвич с вогонской плесенью', 'Unable to get bun name'
+        bun = Bun('Сэндвич с вогонской плесенью', 1500)
+        assert bun.get_name() == 'Сэндвич с вогонской плесенью', 'Unable to get bun name'
 
     def test_bun_get_price(self):
-        assert TestData.bun.get_price() == 1500, 'Unable to get bun price'
+        bun = Bun('Сэндвич с вогонской плесенью', 1500)
+        assert bun.get_price() == 1500, 'Unable to get bun price'
