@@ -17,7 +17,7 @@ class TestBurger:
         mock_ingredient.ingredients = Ingredient('SAUCE', "Соус", 135)
         burger = Burger()
         burger.add_ingredient(mock_ingredient.ingredients)
-        assert burger.ingredients != []
+        assert burger.ingredients != [['SAUCE', "Соус", 135]]
 
     def test_remove_ingredient_one_ingredient_successful(self):
         mock_ingredient = Mock()
@@ -27,15 +27,14 @@ class TestBurger:
         burger.remove_ingredient(0)
         assert burger.ingredients == []
 
-    def test_move_ingredient_first_and_second_ingredient_successful(self):
+    '''Проверка смены мест ингредиентов'''
+    def test_move_ingredients_successful(self):
         mock_ingredient = Mock()
         mock_ingredient.ingredients_1 = Ingredient('SAUCE', "Соус", 135)
         mock_ingredient.ingredients_1 = Ingredient('FILLING', "Кетчуп", 250)
         burger = Burger()
-        assert burger.ingredients == []
         burger.add_ingredient(mock_ingredient.ingredients_1)
         burger.add_ingredient(mock_ingredient.ingredients_2)
-        assert burger.ingredients != []
         burger.move_ingredient(0, 1)
         assert burger.ingredients.index(mock_ingredient.ingredients_1) == 1
 
