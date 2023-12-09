@@ -1,5 +1,5 @@
 import pytest
-from core.bun import Bun
+from praktikum.bun import Bun
 
 
 class TestBun:
