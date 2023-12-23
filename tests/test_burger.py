@@ -1,6 +1,5 @@
 from unittest.mock import Mock
 from praktikum.burger import Burger
-from unittest.mock import patch
 from praktikum.ingredient_types import *
 
 
