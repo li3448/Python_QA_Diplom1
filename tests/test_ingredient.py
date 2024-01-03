@@ -7,12 +7,6 @@ class TestIngredient:
                                                               ['sauce', 'hot sauce', 100.0],
                                                               ['filling', 'sausage', 300.0]])
     def test_get_price_shows_true(self, ingredient_type, name, price):
-        """
-        Проверяем:
-        - значение цены больше 0;
-        - значение цены не равно None;
-        - тип данных на выходе - вещественное число float.
-        """
         ingredient = Ingredient(ingredient_type, name, price)
         result_get_price = ingredient.get_price()
         assert result_get_price > 0.0 and result_get_price != None and type(result_get_price) == float
@@ -21,11 +15,6 @@ class TestIngredient:
                                                               ['sauce', 'hot sauce', 100.0],
                                                               ['filling', 'dinosaur', 300.0]])
     def test_get_name_shows_true(self, ingredient_type, name, price):
-        """
-        Проверяем:
-        - длина названия начинки или соуса не равна 0;
-        - тип данных на выходе - строка.
-        """
         ingredient = Ingredient(ingredient_type, name, price)
         result_get_name = ingredient.get_name()
         assert len(result_get_name) != 0 and type(result_get_name) == str
@@ -34,11 +23,6 @@ class TestIngredient:
                                                               ['sauce', 'hot sauce', 100.0],
                                                               ['filling', 'dinosaur', 300.0]])
     def test_get_type_shows_true(self, ingredient_type, name, price):
-        """
-        Проверяем:
-        - тип ингредиента: начинка или соус;
-        - тип данных на выходе - строка.
-        """
         ingredient = Ingredient(ingredient_type, name, price)
         result_get_type = ingredient.get_type()
         assert (result_get_type == 'sauce' or result_get_type == 'filling') and type(result_get_type) == str
