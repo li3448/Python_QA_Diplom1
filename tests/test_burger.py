@@ -1,6 +1,6 @@
 from unittest.mock import patch
 import pytest
-from mock import Mock
+from unittest.mock import Mock
 from burger import Burger
 
 
