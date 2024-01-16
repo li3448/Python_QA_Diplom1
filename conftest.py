@@ -3,6 +3,13 @@ from unittest.mock import Mock
 
 
 @pytest.fixture
+def mock_bun():
+    mock_bun = Mock()
+    mock_bun.get_name.return_value = 'red bun'
+    return mock_bun
+
+
+@pytest.fixture
 def mock_sauce():
     mock_sauce = Mock()
     mock_sauce.type = 'SAUCE'

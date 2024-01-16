@@ -1,13 +1,12 @@
 from burger import Burger
-from data import *
 from helpers import *
 
 
 class TestBurger:
 
-    def test_set_buns(self):
+    def test_set_buns(self, mock_bun):
         burger = Burger()
-        burger.set_buns(mock_bun())
+        burger.set_buns(mock_bun)
         assert burger.bun.get_name() == BUN_NAME
 
     def test_add_ingredients(self, mock_sauce):
@@ -39,4 +38,4 @@ class TestBurger:
         burger = Burger()
         burger.set_buns(mock_bun_name_and_price)
         burger.add_ingredient(mock_ingredient)
-        assert receipt_() == burger.get_receipt()
+        assert receipt() == burger.get_receipt()
