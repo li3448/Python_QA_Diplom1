@@ -7,9 +7,9 @@
 
 ### Реализованные сценарии
 
-Созданы юнит-тесты, покрывающие классы `Bun`, `Burger`, `Ingredient`
+Созданы юнит-тесты, покрывающие классы `Bun`, `Burger`, `Ingredient`, `Database`
 
-Процент покрытия 70% (отчет: `htmlcov/index.html`)
+Процент покрытия 100% (отчет: `htmlcov/index.html`)
 
 
 ### Каталог praktikum 
@@ -20,6 +20,7 @@
 * `test_Bun` - тесты класса Bun
 * `test_Burger` - тесты класса Burger
 * `test_Ingredient` - тесты класса Ingredient
+* `test_Database` - тесты класса Database
 * `data` - тестовые данные
 * `mocks` - моки
 
