@@ -1,5 +1,5 @@
 import helpers
-from tests.mocks import BurgerMocks
+from mocks import BurgerMocks
 
 
 class TestBurger:

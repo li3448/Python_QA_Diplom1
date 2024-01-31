@@ -1,5 +1,5 @@
 from tests import data
-from tests.mocks import BurgerMocks
+from mocks import BurgerMocks
 import random
 
 
