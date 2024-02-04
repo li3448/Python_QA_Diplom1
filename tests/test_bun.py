@@ -37,3 +37,4 @@ class TestNegativeBun:
     def test_negative_check_type_price(self, name, price):
         bun = Bun(name, price)
         assert type(bun.get_price()) is not float
+
