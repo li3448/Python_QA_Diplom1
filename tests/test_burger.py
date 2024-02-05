@@ -21,17 +21,13 @@ class TestBurger:
         burger.add_ingredient(mock_ingredient)
         assert burger.ingredients == [mock_ingredient], 'Ингредиент не добавлен в список'
 
-    @pytest.mark.parametrize('value', [1, 'Соус Spicy-X'])
-    def test_burger_remove_ingredient(self, value):
+    def test_burger_remove_ingredient(self):
         mock_ingredient_1 = Mock()
         mock_ingredient_2 = Mock()
         burger = Burger()
         burger.ingredients = [mock_ingredient_1, mock_ingredient_2]
-        try:
-            burger.remove_ingredient(value)
-            assert burger.ingredients == [mock_ingredient_1], 'Ингредиент не удалён из списка'
-        except TypeError:
-            assert burger.ingredients == [mock_ingredient_1, mock_ingredient_2], 'Ингредиент удалён по назваанию'
+        burger.remove_ingredient(0)
+        assert mock_ingredient_1 not in burger.ingredients, "Ингридиент не удален и остался в списке ингридиентов"
 
     def test_burger_move_ingredient(self):
         mock_ingredient_1 = Mock()
