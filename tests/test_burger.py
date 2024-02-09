@@ -1,6 +1,7 @@
 import praktikum.ingredient_types
 
 from praktikum.burger import Burger
+from praktikum.database import Database
 from unittest.mock import Mock
 
 
@@ -47,15 +48,28 @@ class TestBurger:
         assert first_ingredient == cooked_burger.ingredients[1]
         assert second_ingredient == cooked_burger.ingredients[0]
 
-    def test_get_price(self, cooked_burger):
-        assert cooked_burger.get_price() == 40.0
-        assert cooked_burger.bun.get_price() * 2 == 20.0
+    def test_get_price(self):
+        burger = Burger()
+        database = Database()
 
-    def test_get_receipt(self, cooked_burger):
-        expected_receipt = "(==== brioche ====)\n"
-        expected_receipt += "= filling cheese =\n"
-        expected_receipt += "= sauce ketchunes =\n"
-        expected_receipt += "(==== brioche ====)\n\n"
-        expected_receipt += "Price: 40.0"
+        burger.set_buns(database.available_buns()[0])
+        burger.add_ingredient(database.available_ingredients()[0])
+        burger.add_ingredient(database.available_ingredients()[3])
 
-        assert expected_receipt == cooked_burger.get_receipt()
+        assert burger.get_price() == 400.0
+
+    def test_get_receipt(self):
+        burger = Burger()
+        database = Database()
+
+        burger.set_buns(database.available_buns()[0])
+        burger.add_ingredient(database.available_ingredients()[0])
+        burger.add_ingredient(database.available_ingredients()[3])
+
+        expected_receipt = "(==== black bun ====)\n"
+        expected_receipt += "= sauce hot sauce =\n"
+        expected_receipt += "= filling cutlet =\n"
+        expected_receipt += "(==== black bun ====)\n\n"
+        expected_receipt += "Price: 400"
+
+        assert expected_receipt == burger.get_receipt()
