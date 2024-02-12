@@ -37,3 +37,12 @@ class TestBurger:
     def test_add_ingredient(self):
         burger = Burger()
         mock_bun = Mock(spec=Bun)
+        pass
+
+    def test_remove_ingredient(self):
+        burger = Burger()
+        mock_ingredient = Mock()
+        burger.add_ingredient(mock_ingredient)
+        burger.remove_ingredient(0)
+
+        assert len(burger.ingredients) == 0
