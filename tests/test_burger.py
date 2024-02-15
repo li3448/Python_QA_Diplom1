@@ -1,7 +1,6 @@
 from praktikum.ingredient_types import INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FILLING
 from tests.data import TestData
 from unittest.mock import Mock
-
 from praktikum.bun import Bun
 from praktikum.burger import Burger
 

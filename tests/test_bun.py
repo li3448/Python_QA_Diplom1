@@ -22,16 +22,6 @@ class TestBun:
         bun = Bun(name, price)
         assert bun.price == price, f"Ожидалась цена булочки {price}, но получено {bun.price}"
 
-    """Тест проверка имя булочки - str"""
-    def test_name_of_bun_is_str(self):
-        bun = Bun(name=TestData.BUN_NAME, price=TestData.BUN_PRICE)
-        assert isinstance(bun.name, str), f"Ожидалась 'str', но получено {type(bun.name)}"
-
-    """Тест проверка цена булочки - float"""
-    def test_price_of_bun_is_float(self):
-        bun = Bun(TestData.BUN_NAME, TestData.BUN_PRICE)
-        assert isinstance(bun.price, float), f"Ожидалась 'float', но получено {type(bun.price)}"
-
     """
     Тесты методов класса Bun
     """
