@@ -18,8 +18,8 @@ class MakeBurger:
 
 class BurgerGetPrice:
 
-    BUNS_SAUCE_FILLING_PRICE = 400          # булки и 2 ингредиента
+    BUNS_SAUCE_FILLING_PRICE = 500          # булки и 2 ингредиента
     BUNS_PRICE               = 100          # только булки
-    BUNS_SAUCE_PRICE         = 200          # булки и соус
-    SAUCE_PRICE              = 100          # только соус без булок
+    BUNS_SAUCE_PRICE         = 400          # булки и соус
+    SAUCE_PRICE              = 300          # только соус без булок
     EMPTY_BURGER_PRICE       = 0            # "пустой" бургер - без булок и ингредиентов

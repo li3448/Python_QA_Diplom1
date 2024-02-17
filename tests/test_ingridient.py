@@ -15,7 +15,7 @@ class TestIngredienr:
         assert sause.get_price == mb.SAUSE_PRICE
     
     def test_ingredient_get_name(self):
-        sause = Ingredient(mb.SAUSE_NAME, mb.SAUSE_PRICE mb.SAUSE_TYPE)
+        sause = Ingredient(mb.SAUSE_NAME, mb.SAUSE_PRICE, mb.SAUSE_TYPE)
         assert sause.get_name == mb.SAUSE_NAME
         
     def test_ingredient_type(self):

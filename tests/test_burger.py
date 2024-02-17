@@ -4,6 +4,7 @@ from unittest.mock import Mock, patch
 from burger import Burger
 from data import MakeBurger as mb,  BurgerGetPrice as bp
 
+
 class TestBurger:
     
     def test_set_buns(self, mock_bun):
@@ -37,7 +38,7 @@ class TestBurger:
         burger.move_ingredient(0, 1)
         assert len(burger.ingredients) == 2
         
-    def test_get_price_for_two_ingredients(self,mock_ingredient_class,mock_bun_class):
+    def test_get_price_for_two_ingredients(self):
         mock_sauce = Mock()
         mock_bun = Mock()
         mock_filling = Mock()
@@ -50,7 +51,7 @@ class TestBurger:
         burger.ingredients(mock_filling)
         assert burger.get_price() == bp.BUNS_SAUCE_FILLING_PRICE
         
-    def test_get_receipt_with_buns_sauce_filling(self, mock_burger_get_price, mock_ingredient_class, mock_bun_class):
+    def test_get_receipt_with_buns_sauce_filling(self):
         mock_bun = Mock()
         mock_bun.get_name.return_value = mb.BUN_NAME
         mock_bun.get_price.return_value = mb.BUN_PRICE
