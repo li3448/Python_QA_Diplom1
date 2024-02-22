@@ -66,8 +66,13 @@ class TestBurger:
         burger.set_buns(mock_bun)
         burger.add_ingredient(mock_sauce)
         burger.add_ingredient(mock_filling)
-        receipt = burger.get_receipt()     
-        assert len(receipt) > 0
+        print (burger.get_receipt())     
+        assert burger.get_receipt() == ("(==== black bun ====)\n"
+                                        "= SAUSE chili sauce =\n"
+                                        "= FILLING cutlet  =\n"
+                                        "(==== black bun ====)\n"
+                                        "\n"
+                                        "Price: 600")
         
         
         

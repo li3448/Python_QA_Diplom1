@@ -1,4 +1,3 @@
-import allure
 import pytest
 
 from data import MakeBurger as mb
@@ -12,13 +11,13 @@ class TestIngredienr:
         
     def test_indredient_price(self):
         sause = Ingredient(mb.SAUSE_NAME, mb.SAUSE_PRICE, mb.SAUSE_TYPE)
-        assert sause.get_price == mb.SAUSE_PRICE
+        assert sause.get_price() == mb.SAUSE_PRICE
     
     def test_ingredient_get_name(self):
-        sause = Ingredient(mb.SAUSE_NAME, mb.SAUSE_PRICE mb.SAUSE_TYPE)
-        assert sause.get_name == mb.SAUSE_NAME
+        sause = Ingredient(mb.SAUSE_NAME, mb.SAUSE_PRICE, mb.SAUSE_TYPE)
+        assert sause.get_name() == mb.SAUSE_NAME
         
     def test_ingredient_type(self):
         sause = Ingredient(mb.SAUSE_NAME, mb.SAUSE_PRICE, mb.SAUSE_TYPE)
-        assert sause.get_price == mb.SAUSE_TYPE   
+        assert sause.get_price() == mb.SAUSE_TYPE   
         
