@@ -7,14 +7,14 @@ class TestBurger:
 
     def test_set_buns(self, burger):
         mock_bun = Mock()
-        mock_bun.configure_mock(name=buns[0]['name'], price=buns[0]['price'])
+        mock_bun.configure_mock(name=buns[1]['name'], price=buns[1]['price'])
         burger.set_buns(mock_bun)
 
         assert burger.bun == mock_bun
 
     def test_add_ingredient(self, burger):
         mock_ingred2 = Mock()
-        mock_ingred2.configure_mock(type=ingreds[2]['type'], name=ingreds[2]['name'], price=ingreds[2]['price'])
+        mock_ingred2.configure_mock(type=ingreds[1]['type'], name=ingreds[1]['name'], price=ingreds[1]['price'])
 
         burger.add_ingredient(mock_ingred2)
 
