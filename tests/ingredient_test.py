@@ -6,7 +6,7 @@ class TestIngredient:
         assert ingredient.get_price() == 555
 
     def test_get_name_true(self, ingredient):
-        assert ingredient.get_name() == 'Крейзи_соус'
+        assert ingredient.get_name() == 'crazy sauce'
 
     def test_get_type_true(self, ingredient):
         assert ingredient.get_type() == INGREDIENT_TYPE_SAUCE

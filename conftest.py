@@ -7,7 +7,7 @@ from praktikum.burger import Burger
 
 @pytest.fixture(scope='function')
 def bun():
-    bun = Bun('Крейзи_Булка', 999)
+    bun = Bun('crazy bun', 999)
     return bun
 
 
@@ -19,5 +19,5 @@ def burger():
 
 @pytest.fixture(scope='function')
 def ingredient():
-    ingredient = Ingredient(INGREDIENT_TYPE_SAUCE, "Крейзи_соус", 555)
+    ingredient = Ingredient(INGREDIENT_TYPE_SAUCE, "crazy sauce", 555)
     return ingredient
