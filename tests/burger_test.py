@@ -1,8 +1,5 @@
-from unittest.mock import Mock
-
 import pytest
-
-from praktikum.ingredient import Ingredient
+from unittest.mock import Mock
 from praktikum.ingredient_types import *
 
 
