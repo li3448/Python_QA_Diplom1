@@ -1,11 +1,12 @@
 import collections
 from unittest.mock import Mock
-from praktikum.ingredient_types import *
+
 import pytest
 
 from data import generator_ingredients
 from praktikum.bun import Bun
 from praktikum.burger import Burger
+from praktikum.ingredient_types import *
 
 
 class TestBurger:
@@ -33,7 +34,7 @@ class TestBurger:
 
         test_ingredients.pop(index_remove)  # Удаляем из тестового набора
         burger.remove_ingredient(index_remove)  # Удаляем методом класса
-        assert  burger.ingredients == test_ingredients
+        assert burger.ingredients == test_ingredients
 
     @pytest.mark.parametrize('old_index, new_index', [[0, 1], [0, 2], [1, 2]])
     def test_move_ingredient_in_burger_check_index(self, old_index, new_index, fixt_set_burger):
@@ -67,7 +68,6 @@ class TestBurger:
         expected_price = bun_price * 2 + ingredient_price * 2
         actual_price = burger.get_price()
         assert expected_price == actual_price
-
 
     def test_get_receipt_check_bun_name(self):
         excepted = "test_name_bun"
