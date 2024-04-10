@@ -77,8 +77,9 @@ class TestBurger:
         burger = Burger()
         burger.set_buns(mock_bun)
 
+        receipt = burger.get_receipt()
         excepted = f"(==== {mock_bun.get_name()} ====)"
-        assert excepted in burger.get_receipt()
+        assert excepted in receipt
 
     def test_get_receipt_check_ingredient_name(self):
         mock_bun = Mock()
