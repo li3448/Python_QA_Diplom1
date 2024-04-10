@@ -70,14 +70,14 @@ class TestBurger:
         assert expected_price == actual_price
 
     def test_get_receipt_check_bun_name(self):
-        excepted = "test_name_bun"
         mock_bun = Mock()
-        mock_bun.get_name.return_value = excepted
+        mock_bun.get_name.return_value = "test_name_bun"
         mock_bun.get_price.return_value = 10
 
         burger = Burger()
         burger.set_buns(mock_bun)
 
+        excepted = f"(==== {mock_bun.get_name()} ====)"
         assert excepted in burger.get_receipt()
 
     def test_get_receipt_check_ingredient_name(self):
@@ -85,14 +85,15 @@ class TestBurger:
         mock_bun.get_name.return_value = "test_name_bun"
         mock_bun.get_price.return_value = 10
 
-        excepted = "test_name_ingredient"
         mock_ingredient = Mock()
         mock_ingredient.get_type.return_value = INGREDIENT_TYPE_SAUCE
-        mock_ingredient.get_name.return_value = excepted
+        mock_ingredient.get_name.return_value = "test_name_ingredient"
         mock_ingredient.get_price.return_value = 5
 
         burger = Burger()
         burger.set_buns(mock_bun)
         burger.add_ingredient(mock_ingredient)
 
-        assert excepted in burger.get_receipt()
+        receipt = burger.get_receipt()
+        expected = f'= {mock_ingredient.get_type().lower()} {mock_ingredient.get_name()} ='
+        assert expected in receipt
