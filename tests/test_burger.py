@@ -1,6 +1,7 @@
 from unittest.mock import Mock
 from data import Data, ExpectedResult
 from praktikum_package.burger import Burger
+from praktikum_package.ingredient import Ingredient
 
 
 class TestBurger:
@@ -36,3 +37,19 @@ class TestBurger:
         new_burger.add_ingredient(mock_ingredient)
 
         assert new_burger.get_receipt() == ExpectedResult.RECEIPT
+
+    def test_remove_ingredient(self):
+        new_burger = Burger()
+        new_ingredient_1 = Mock()
+        new_burger.add_ingredient(new_ingredient_1)
+        new_burger.remove_ingredient(0)
+        assert len(new_burger.ingredients) == 0
+
+    def test_move_ingredient(self):
+        new_burger = Burger()
+        new_ingredient_1 = Mock()
+        new_ingredient_2 = Mock()
+        new_burger.add_ingredient(new_ingredient_1)
+        new_burger.add_ingredient(new_ingredient_2)
+        new_burger.move_ingredient(0, 1)
+        assert new_burger.ingredients[0] == new_ingredient_2
