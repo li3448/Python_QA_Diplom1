@@ -1,7 +1,6 @@
 from unittest.mock import Mock
 from data import Data, ExpectedResult
 from praktikum_package.burger import Burger
-from praktikum_package.ingredient import Ingredient
 
 
 class TestBurger:
