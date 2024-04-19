@@ -12,21 +12,21 @@ class TestIngredient:
     def test_create_ingredient_actual_type_name_and_price_success(self):
         ingredient = Ingredient(Data.INGREDIENT_TYPE, Data.INGREDIENT_NAME, Data.INGREDIENT_PRICE)
 
-        assert ingredient.type == 'SAUCE' and ingredient.name == 'Алиенский кислый' and ingredient.price == 99.77
+        assert ingredient.type == Data.INGREDIENT_TYPE and ingredient.name == Data.INGREDIENT_NAME and ingredient.price == Data.INGREDIENT_PRICE
 
     @allure.title('Проверка получения имени ингредиента')
     @allure.description('Проверяем, что возможно получить имя ингредиента методом get_name')
     def test_get_name_success(self):
         ingredient = Ingredient(Data.INGREDIENT_TYPE, Data.INGREDIENT_NAME, Data.INGREDIENT_PRICE)
 
-        assert ingredient.get_name() == 'Алиенский кислый'
+        assert ingredient.get_name() == Data.INGREDIENT_NAME
 
     @allure.title('Проверка получения цену ингредиента')
     @allure.description('Проверяем, что возможно получить цену ингредиента методом get_price')
     def test_get_price_success(self):
         ingredient = Ingredient(Data.INGREDIENT_TYPE, Data.INGREDIENT_NAME, Data.INGREDIENT_PRICE)
 
-        assert ingredient.get_price() == 99.77
+        assert ingredient.get_price() == Data.INGREDIENT_PRICE
 
     @allure.title('Проверка получения типа ингредиента')
     @allure.description('Проверяем, что возможно получить тип ингредиента методом get_type')

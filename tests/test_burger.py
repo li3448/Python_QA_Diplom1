@@ -44,9 +44,6 @@ class TestBurger:
         burger = Burger()
         burger.add_ingredient(mock_bun)
         burger.add_ingredient(mock_ingredient)
-        burger = Burger()
-        burger.add_ingredient(mock_bun)
-        burger.add_ingredient(mock_ingredient)
         burger.move_ingredient(1, 0)
 
         assert burger.ingredients[0] == mock_ingredient and burger.ingredients[1] == mock_bun
