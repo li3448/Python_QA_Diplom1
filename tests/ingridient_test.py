@@ -9,9 +9,9 @@ class TestIngredient:
     def test_ingredient_init(self):
         """Проверяем, что конструктор инициализирует поля type, name и price корректно"""
         ingredient = Ingredient(INGREDIENT_TYPE_FILLING, INGREDIENT_CUTLET, PRICE_INGREDIENT)
-        assert ingredient.type == INGREDIENT_TYPE_FILLING
-        assert ingredient.name == INGREDIENT_CUTLET
-        assert ingredient.price == PRICE_INGREDIENT
+        assert ingredient.get_type() == INGREDIENT_TYPE_FILLING
+        assert ingredient.get_name() == INGREDIENT_CUTLET
+        assert ingredient.get_price() == PRICE_INGREDIENT
 
     def test_ingredient_get_price(self):
         """Проверяем, что метод get_price() возвращает ожидаемое значение"""
