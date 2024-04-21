@@ -62,8 +62,8 @@ class TestBurger:
         assert burger.get_price() == burger_price
 
     @pytest.mark.parametrize('bun_price, bun_name, ingredient_price, ingredient_type, ingredient_name, burger_price',
-                             [[99, 'crazy bun', 55, INGREDIENT_TYPE_SAUCE, 'mex sauce', 253],
-                              [14, 'amazing bun', 104, INGREDIENT_TYPE_FILLING, 'amazing sauce', 132]])
+                             [[99, 'crazy bun', 55, INGREDIENT_TYPE_SAUCE.lower(), 'mex sauce', 253],
+                              [14, 'amazing bun', 104, INGREDIENT_TYPE_FILLING.lower(), 'amazing sauce', 132]])
     def test_get_receipt_true(self, burger, bun_price, bun_name, ingredient_price,
                               ingredient_type, ingredient_name, burger_price):
         mock_bun = Mock()
@@ -77,7 +77,7 @@ class TestBurger:
         mock_ingredient.get_name.return_value = ingredient_name
         burger.add_ingredient(mock_ingredient)
 
-        receipt_text_list = [burger.get_price(), bun_name,
-                             ingredient_name, ingredient_type.lower(), burger_price]
-        for receipt_text in receipt_text_list:
-            assert str(receipt_text) in burger.get_receipt()
+        receipt_example = (f'(==== {bun_name} ====)\n= {ingredient_type} {ingredient_name} =\n(==== {bun_name} ====)'
+                           f'\n\nPrice: {burger_price}')
+
+        assert receipt_example == burger.get_receipt()
