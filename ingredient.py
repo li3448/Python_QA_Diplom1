@@ -1,3 +1,6 @@
+from ingredient_types import IngredientTypeEnum
+
+
 class Ingredient:
     """
     Модель ингредиента.
@@ -5,7 +8,7 @@ class Ingredient:
     У ингредиента есть тип (начинка или соус), название и цена.
     """
 
-    def __init__(self, ingredient_type: str, name: str, price: float):
+    def __init__(self, ingredient_type: IngredientTypeEnum, name: str, price: float):
         self.type = ingredient_type
         self.name = name
         self.price = price
@@ -17,4 +20,5 @@ class Ingredient:
         return self.name
 
     def get_type(self) -> str:
+        x = self.type
         return self.type
