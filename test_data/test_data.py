@@ -5,14 +5,19 @@ from ingredient_types import IngredientTypeEnum
 
 class TestData:
 
-    BUN = ('bun name 1', 1)
-    ANOTHER_BUN = ('bun name 2', 2)
+    # BUN = ('bun name 1', 1)
+    # ANOTHER_BUN = ('bun name 2', 2)
 
-    INGREDIENT: Ingredient = (
-        IngredientTypeEnum.INGREDIENT_TYPE_FILLING,
-        'name',
-        1
-    )
+    BUNS_LIST = [
+        ('bun name 1', 1),
+        ('bun name 2', 2)
+    ]
+
+    # INGREDIENT: Ingredient = (
+    #     IngredientTypeEnum.INGREDIENT_TYPE_FILLING,
+    #     'name',
+    #     1
+    # )
 
     INGREDIENTS_LIST: list[dict] = [
         {

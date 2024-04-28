@@ -7,12 +7,6 @@ from test_data.test_data import TestData
 
 class TestIngredient:
 
-    test_ingredient = (
-        IngredientTypeEnum.INGREDIENT_TYPE_FILLING,
-        'name',
-        1
-    )
-
     def test_default_ingredient_type_true(self):
         ingredient_instance = Ingredient(
             *TestData.INGREDIENTS_LIST[0].values()

@@ -1,27 +1,30 @@
 from bun import Bun
+from test_data.test_data import TestData
 
 
 class TestBun:
 
-    # тест конструктора
-    test_bun = (
-        'bun name',
-        1
-    )
-
     def test_default_bun_name_true(self):
-        bun = Bun(*self.test_bun)
-        assert bun.name == 'name'
+        bun = Bun(
+            *TestData.BUNS_LIST[0]
+        )
+        assert bun.name == 'bun name 1'
 
     # тест конструктора
     def test_default_bun_price_true(self):
-        bun = Bun(*self.test_bun)
+        bun = Bun(
+            *TestData.BUNS_LIST[0]
+        )
         assert bun.price == 1
 
     def test_get_name(self):
-        bun = Bun(*self.test_bun)
-        assert bun.get_name() == 'name'
+        bun = Bun(
+            *TestData.BUNS_LIST[0]
+        )
+        assert bun.get_name() == 'bun name 1'
 
     def test_get_price(self):
-        bun = Bun(*self.test_bun)
+        bun = Bun(
+            *TestData.BUNS_LIST[0]
+        )
         assert bun.get_price() == 1

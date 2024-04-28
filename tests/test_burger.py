@@ -20,14 +20,14 @@ class TestBurger:
 
     def test_set_buns(self):
         burger = Burger()
-        burger.set_buns(TestData.BUN)
-        assert burger.bun == TestData.BUN
+        burger.set_buns(TestData.BUNS_LIST[0])
+        assert burger.bun == TestData.BUNS_LIST[0]
 
     def test_set_another_buns_true(self):
         burger = Burger()
-        burger.set_buns(TestData.BUN)
-        burger.set_buns(TestData.ANOTHER_BUN)
-        assert burger.bun == TestData.ANOTHER_BUN
+        burger.set_buns(TestData.BUNS_LIST[0])
+        burger.set_buns(TestData.BUNS_LIST[1])
+        assert burger.bun == TestData.BUNS_LIST[1]
 
     def test_add_ingredient_success(self):
         burger = Burger()
@@ -114,5 +114,3 @@ class TestBurger:
         # check price line format
         assert receipt_strs_array[receipt_strs_array_length - 1] == \
             f'Price: {HelperFuncs.get_burger_price(item)}'
-
-        # print(burger.get_receipt())
