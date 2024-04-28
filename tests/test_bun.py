@@ -1,5 +1,5 @@
 from bun import Bun
-from test_data.test_data import TestData
+from data.data import TestData
 
 
 class TestBun:

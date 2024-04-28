@@ -4,7 +4,7 @@ from unittest.mock import Mock, patch
 import pytest
 
 from burger import Burger
-from test_data.test_data import TestData
+from data.data import TestData
 from tests.helper_funcs import HelperFuncs
 
 

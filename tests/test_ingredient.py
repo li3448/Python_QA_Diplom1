@@ -1,8 +1,7 @@
 import pytest
 
 from ingredient import Ingredient
-from ingredient_types import IngredientTypeEnum
-from test_data.test_data import TestData
+from data.data import TestData
 
 
 class TestIngredient:
