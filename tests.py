@@ -28,9 +28,10 @@ class TestBurger:
     @patch('Diplom_1.bun.Bun')
     def test_set_buns(self, mock_bun):
         burger = Burger()
+        database = Database()
         mock_bun = mock_bun.return_value
-        mock_bun.get_name.return_value = "white bun"
-        mock_bun.get_price.return_value = 50
+        mock_bun.get_name.return_value = database.ingredients[0].get_name()
+        mock_bun.get_price.return_value = database.ingredients[0].get_price()
 
         burger.set_buns(mock_bun)
 
@@ -54,6 +55,85 @@ class TestBurger:
         assert burger.ingredients[0].get_type() == database_ingredient[index].get_type()
         assert burger.ingredients[0].get_name() == database_ingredient[index].get_name()
         assert burger.ingredients[0].get_price() == database_ingredient[index].get_price()
+
+    @patch('Diplom_1.ingredient.Ingredient')
+    def test_remove_ingredient(self, mock_ingredient):
+        burger = Burger()
+        database = Database()
+        database_ingredient = database.ingredients
+
+        mock_ingredient = mock_ingredient.return_value
+        mock_ingredient.get_type.return_value = database_ingredient[0].get_type()
+        mock_ingredient.get_name.return_value = database_ingredient[0].get_name()
+        mock_ingredient.get_price.return_value = database_ingredient[0].get_price()
+
+        burger.add_ingredient(mock_ingredient)
+        burger.remove_ingredient(0)
+
+        assert len(burger.ingredients) == 0
+
+
+    @patch('Diplom_1.ingredient.Ingredient')
+    def test_move_ingredient(self, mock_ingredient):
+        burger = Burger()
+        database = Database()
+        database_ingredient = database.ingredients
+
+        mock_ingredient = mock_ingredient.return_value
+        mock_ingredient.get_type.return_value = database_ingredient[0].get_type()
+        mock_ingredient.get_name.return_value = database_ingredient[0].get_name()
+        mock_ingredient.get_price.return_value = database_ingredient[0].get_price()
+
+        burger.add_ingredient(mock_ingredient)
+        burger.move_ingredient(0, 0)
+
+        assert burger.ingredients[0].get_type() == database_ingredient[0].get_type()
+        assert burger.ingredients[0].get_name() == database_ingredient[0].get_name()
+        assert burger.ingredients[0].get_price() == database_ingredient[0].get_price()
+
+    @patch('Diplom_1.ingredient.Ingredient')
+    @patch('Diplom_1.ingredient.Ingredient')
+    @patch('Diplom_1.bun.Bun')
+    def test_get_price(self, mock_ingredient_sause, mock_ingredient_filling, mock_bun):
+        burger = Burger()
+        database = Database()
+        database_ingredient = database.ingredients
+
+        mock_ingredient_sause = mock_ingredient_sause.return_value
+        mock_ingredient_sause.get_type.return_value = database_ingredient[0].get_type()
+        mock_ingredient_sause.get_name.return_value = database_ingredient[0].get_name()
+        mock_ingredient_sause.get_price.return_value = database_ingredient[0].get_price()
+
+        burger.add_ingredient(mock_ingredient_sause)
+
+        mock_ingredient_filling = mock_ingredient_filling.return_value
+        mock_ingredient_filling.get_type.return_value = database_ingredient[3].get_type()
+        mock_ingredient_filling.get_name.return_value = database_ingredient[3].get_name()
+        mock_ingredient_filling.get_price.return_value = database_ingredient[3].get_price()
+
+        burger.add_ingredient(mock_ingredient_filling)
+
+
+        mock_bun = mock_bun.return_value
+        mock_bun.get_name.return_value = database.buns[0].get_name()
+        mock_bun.get_price.return_value = database.buns[0].get_price()
+
+        burger.set_buns(mock_bun)
+
+
+        price = burger.get_price()
+
+        assert price == 400
+
+
+
+
+
+
+
+
+
+
 
 
 
