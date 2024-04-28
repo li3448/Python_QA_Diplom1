@@ -14,7 +14,7 @@ class TestData:
         1
     )
 
-    INGREDIENTS_LIST: list[Ingredient] = [
+    INGREDIENTS_LIST: list[dict] = [
         {
             'type': IngredientTypeEnum.INGREDIENT_TYPE_FILLING,
             "name": 'ingredient name 1',
@@ -27,7 +27,7 @@ class TestData:
         },
     ]
 
-    BURGERS_LIST: list[dict[str, Burger | int]] = [
+    BURGERS_LIST: list[dict[str, list | dict]] = [
         {
             'ingredients': [],
             'bun': {

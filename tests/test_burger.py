@@ -1,12 +1,11 @@
 import copy
-from functools import reduce
 from unittest.mock import Mock, patch
 
 import pytest
 
 from burger import Burger
-from database import Database
 from test_data.test_data import TestData
+from tests.helper_funcs import HelperFuncs
 
 
 class TestBurger:
@@ -30,12 +29,9 @@ class TestBurger:
         burger.set_buns(TestData.ANOTHER_BUN)
         assert burger.bun == TestData.ANOTHER_BUN
 
-    # @patch('ingredient.Ingredient')
     def test_add_ingredient_success(self):
         burger = Burger()
         ingredient_mock = Mock(**TestData.INGREDIENTS_LIST[1])
-        print('Ingredient Name: ', ingredient_mock.name)
-        print('!!!!!!!!!!!!!!!', ingredient_mock.price)
         ingredient_mock.name = TestData.INGREDIENTS_LIST[1]['name']
         burger.add_ingredient(
             ingredient_mock
@@ -64,7 +60,6 @@ class TestBurger:
 
     def test_remove_ingredient_success(self):
         burger = Burger()
-        # database = Database()
         burger.ingredients = TestData.INGREDIENTS_LIST[:]
         burger.remove_ingredient(0)
         assert len(burger.ingredients) == 1
@@ -72,30 +67,52 @@ class TestBurger:
         burger.remove_ingredient(0)
         assert len(burger.ingredients) == 0
 
-    def test_move_ingredient(self, index: int, new_index: int):
-        self.ingredients.insert(new_index, self.ingredients.pop(index))
+    @pytest.mark.parametrize('item', TestData.BURGERS_LIST[3:])
+    def test_move_ingredient_move_last_to_first_success(self, item):
+        burger = HelperFuncs.create_burger_instance(item)
+        initial_burger_ingredients_list = copy.deepcopy(burger.ingredients)
+        last_ingredient = burger.ingredients[len(burger.ingredients) - 1]
+        burger.move_ingredient(len(burger.ingredients) - 1, 0)
+        assert burger.ingredients[0] == last_ingredient
+        assert burger.ingredients[1:] == initial_burger_ingredients_list[0: -1]
+
+    @pytest.mark.parametrize('item', TestData.BURGERS_LIST[3:])
+    def test_move_ingredient_move_first_to_last_success(self, item):
+        burger = HelperFuncs.create_burger_instance(item)
+        initial_burger_ingredients_list = copy.deepcopy(burger.ingredients)
+        first_ingredient = burger.ingredients[0]
+        burger.move_ingredient(0, len(burger.ingredients) - 1)
+        assert burger.ingredients[len(burger.ingredients) - 1] == first_ingredient
+        assert initial_burger_ingredients_list[1:] == burger.ingredients[0: -1]
 
     @pytest.mark.parametrize('item', TestData.BURGERS_LIST)
-    def test_get_price(self, item):
-        bun_price = item.get('bun').get('price')
-        ingredient_price = sum(
-            map(
-                lambda x : x['price'], item['ingredients']
-            )
-        )
-        total_price = 2 * bun_price + ingredient_price
-        bun = Mock()
-        bun.name = item['bun'].get('name')
-        bun.price = item['bun'].get('price')
-        bun.get_price.return_value = item['bun']['price']
-        burger = Burger()
-        burger.bun = bun
-        burger.ingredients = []
-        for i in item['ingredients']:
-            elem = Mock()
-            elem.name = i['name']
-            elem.price = i['price']
-            elem.type = i['type']
-            elem.get_price.return_value = i['price']
-            burger.ingredients.append(elem)
+    def test_get_price_success(self, item):
+        total_price = HelperFuncs.get_burger_price(item)
+        burger = HelperFuncs.create_burger_instance(item)
         assert burger.get_price() == total_price
+
+    @patch('burger.Burger.get_price')
+    @pytest.mark.parametrize('item', TestData.BURGERS_LIST[0:])
+    def test_get_receipt(self, mock_get_price, item): #  item,
+        mock_get_price.return_value = HelperFuncs.get_burger_price(item)
+        burger = HelperFuncs.create_burger_instance(item)
+        receipt = burger.get_receipt()
+        receipt_strs_array = HelperFuncs.split_text_by_lines(receipt)
+
+        receipt_strs_array_length = len(receipt_strs_array)
+        # check if bun lines are equal
+        assert receipt_strs_array[0] == receipt_strs_array[receipt_strs_array_length - 2]
+        # check bun line format
+        assert receipt_strs_array[0] == f'(==== {item.get('bun').get('name')} ====)'
+        ingredient_str_array = HelperFuncs.get_ingredient_strings_from_receipt(receipt_strs_array)
+        # check ingredient lines quantity
+        assert len(ingredient_str_array) == len(item.get('ingredients'))
+
+        for s, item_ingredient in zip(ingredient_str_array, item.get('ingredients')):
+            # check ingredient line format
+            assert s == f'= {item_ingredient.get('type').lower()} {item_ingredient.get('name')} ='
+        # check price line format
+        assert receipt_strs_array[receipt_strs_array_length - 1] == \
+            f'Price: {HelperFuncs.get_burger_price(item)}'
+
+        # print(burger.get_receipt())

@@ -30,10 +30,8 @@ class Burger:
 
     def get_price(self) -> float:
         price = self.bun.get_price() * 2
-        # print('!!!!!!!price!!!!!!!!', price)
         for ingredient in self.ingredients:
             price += ingredient.get_price()
-        # print('!!!!!!!price!!!!!!!!', price)
         return price
 
     def get_receipt(self) -> str:
