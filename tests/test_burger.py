@@ -89,8 +89,8 @@ class TestBurger:
         mock_ing_filling.get_type.return_value = INGREDIENT_TYPE_FILLING
         mock_ing_filling.get_name.return_value = "cutlet"
         mock_ing_filling.get_price.return_value = 100
-        assert burger.get_receipt() == ('(==== black bun ====)\n' 
-                                        '= sauce hot sauce =\n' 
+        assert burger.get_receipt() == ('(==== black bun ====)\n'
+                                        '= sauce hot sauce =\n'
                                         '= filling cutlet =\n'
                                         '(==== black bun ====)\n'
                                         '\n'
