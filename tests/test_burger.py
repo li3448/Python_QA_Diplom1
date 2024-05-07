@@ -1,8 +1,7 @@
 import pytest
+from unittest.mock import Mock
 
 from helpers import Helpers
-from praktikum.bun import Bun
-from praktikum.ingredient import Ingredient
 from praktikum.burger import Burger
 
 
@@ -22,12 +21,14 @@ class TestBurger:
 
     def test_set_buns_return_bun_object(self):
 
-        buns = Bun(Helpers.BULICHKA['name'], Helpers.BULICHKA['price'])
+        mock_buns = Mock()
+        mock_buns.name = 'bulichka'
+        mock_buns.price = 1.5
         burger = Burger()
 
-        burger.set_buns(buns)
+        burger.set_buns(mock_buns)
 
-        assert burger.bun == buns
+        assert burger.bun == mock_buns
 
     @pytest.mark.parametrize('ingredient_type, ingredient_name, price', [
         [Helpers.SOUSETS['ingredient_type'], Helpers.SOUSETS['name'], Helpers.SOUSETS['price']],
@@ -35,70 +36,124 @@ class TestBurger:
     ])
     def test_add_ingredient_return_list_with_assigned_ingredient(self, ingredient_type, ingredient_name, price):
 
-        ingredient = Ingredient(ingredient_type, ingredient_name, price)
+        mock_ingredient = Mock()
+        mock_ingredient.ingredient_type = ingredient_type
+        mock_ingredient.ingredient_name = ingredient_name
+        mock_ingredient.price = price
+
         burger = Burger()
 
-        burger.add_ingredient(ingredient)
-        assert burger.ingredients == [ingredient]
+        burger.add_ingredient(mock_ingredient)
+
+        assert burger.ingredients == [mock_ingredient]
 
     def test_remove_ingredient_return_empty_ingredients_list(self):
 
-        sousets = Ingredient(Helpers.SOUSETS['ingredient_type'], Helpers.SOUSETS['name'], Helpers.SOUSETS['price'])
+        mock_sousets = Mock()
+        mock_sousets.ingredient_type = Helpers.SOUSETS['ingredient_type']
+        mock_sousets.name = Helpers.SOUSETS['name']
+        mock_sousets.price = Helpers.SOUSETS['price']
+
         burger = Burger()
 
-        burger.add_ingredient(sousets)
+        burger.add_ingredient(mock_sousets)
         burger.remove_ingredient(0)
 
         assert burger.ingredients == []
 
     def test_move_ingredient_return_mixed_list(self):
 
-        #  Создаем объекты класса Ингредиент – соусец и лучок, а также объект класса Бургер
-        ingredient1 = Ingredient(Helpers.SOUSETS['ingredient_type'], Helpers.SOUSETS['name'], Helpers.SOUSETS['price'])
-        ingredient2 = Ingredient(Helpers.LUCHOK['ingredient_type'], Helpers.LUCHOK['name'], Helpers.LUCHOK['price'])
+        #  Создаем мок-объекты класса Ингредиент – соусец и лучок, а также объект класса Бургер
+        mock_ingredient1 = Mock()
+        mock_ingredient1.ingredient_type = Helpers.SOUSETS['ingredient_type']
+        mock_ingredient1.name = Helpers.SOUSETS['name']
+        mock_ingredient1.price = Helpers.SOUSETS['price']
+
+        mock_ingredient2 = Mock()
+        mock_ingredient2.ingredient_type = Helpers.LUCHOK['ingredient_type']
+        mock_ingredient2.name = Helpers.LUCHOK['name']
+        mock_ingredient2.price = Helpers.LUCHOK['price']
+
         burger = Burger()
 
         #  Добавляем в бургер ингредиенты: сначала соусец, затем лучок
-        burger.add_ingredient(ingredient1)
-        burger.add_ingredient(ingredient2)
+        burger.add_ingredient(mock_ingredient1)
+        burger.add_ingredient(mock_ingredient2)
 
         #  Перемещаем соусец с первого на второе место в списке ингредиентов
         burger.move_ingredient(0, 1)
 
         #  Проверяем, что соусец теперь действительно изменил свой индекс
-        assert burger.ingredients == [ingredient2, ingredient1]
+        assert burger.ingredients == [mock_ingredient2, mock_ingredient1]
 
     def test_get_price_return_amount_of_bun_double_price_and_ingredients_price(self):
 
-        ingredient1 = Ingredient(Helpers.SOUSETS['ingredient_type'], Helpers.SOUSETS['name'], Helpers.SOUSETS['price'])
-        ingredient2 = Ingredient(Helpers.LUCHOK['ingredient_type'], Helpers.LUCHOK['name'], Helpers.LUCHOK['price'])
-        bun = Bun(Helpers.BULICHKA['name'], Helpers.BULICHKA['price'])
+        # ingredient1 = Ingredient(Helpers.SOUSETS['ingredient_type'], Helpers.SOUSETS['name'], Helpers.SOUSETS['price'])
+        # ingredient2 = Ingredient(Helpers.LUCHOK['ingredient_type'], Helpers.LUCHOK['name'], Helpers.LUCHOK['price'])
+        # bun = Bun(Helpers.BULICHKA['name'], Helpers.BULICHKA['price'])
+
+        mock_ingredient1 = Mock()
+        mock_ingredient1.ingredient_type = Helpers.SOUSETS['ingredient_type']
+        mock_ingredient1.name = Helpers.SOUSETS['name']
+        mock_ingredient1.price = Helpers.SOUSETS['price']
+        mock_ingredient1.get_price.return_value = Helpers.SOUSETS['price']
+
+        mock_ingredient2 = Mock()
+        mock_ingredient2.ingredient_type = Helpers.LUCHOK['ingredient_type']
+        mock_ingredient2.name = Helpers.LUCHOK['name']
+        mock_ingredient2.price = Helpers.LUCHOK['price']
+        mock_ingredient2.get_price.return_value = Helpers.LUCHOK['price']
+
+        mock_bun = Mock()
+        mock_bun.name = Helpers.BULICHKA['name']
+        mock_bun.price = Helpers.BULICHKA['price']
+        mock_bun.get_price.return_value = Helpers.BULICHKA['price']
+
         burger = Burger()
 
-        burger.set_buns(bun)
-        burger.add_ingredient(ingredient1)
-        burger.add_ingredient(ingredient2)
+        burger.set_buns(mock_bun)
+        burger.add_ingredient(mock_ingredient1)
+        burger.add_ingredient(mock_ingredient2)
 
         assert \
-            burger.get_price() == Helpers.LUCHOK['price'] + Helpers.SOUSETS['price'] + (Helpers.BULICHKA['price'] * 2)
+            burger.get_price() == mock_ingredient1.price + mock_ingredient2.price + (mock_bun.price * 2)
 
     def test_get_receipt_return_string_with_buns_ingredients_and_amount_price_of_burger(self):
 
-        ingredient1 = Ingredient(Helpers.SOUSETS['ingredient_type'], Helpers.SOUSETS['name'], Helpers.SOUSETS['price'])
-        ingredient2 = Ingredient(Helpers.LUCHOK['ingredient_type'], Helpers.LUCHOK['name'], Helpers.LUCHOK['price'])
-        bun = Bun(Helpers.BULICHKA['name'], Helpers.BULICHKA['price'])
+        mock_ingredient1 = Mock()
+        mock_ingredient1.ingredient_type = Helpers.SOUSETS['ingredient_type']
+        mock_ingredient1.name = Helpers.SOUSETS['name']
+        mock_ingredient1.price = Helpers.SOUSETS['price']
+        mock_ingredient1.get_name.return_value = Helpers.SOUSETS['name']
+        mock_ingredient1.get_price.return_value = Helpers.SOUSETS['price']
+        mock_ingredient1.get_type.return_value = Helpers.SOUSETS['ingredient_type']
+
+        mock_ingredient2 = Mock()
+        mock_ingredient2.ingredient_type = Helpers.LUCHOK['ingredient_type']
+        mock_ingredient2.name = Helpers.LUCHOK['name']
+        mock_ingredient2.price = Helpers.LUCHOK['price']
+        mock_ingredient2.get_name.return_value = Helpers.LUCHOK['name']
+        mock_ingredient2.get_price.return_value = Helpers.LUCHOK['price']
+        mock_ingredient2.get_type.return_value = Helpers.LUCHOK['ingredient_type']
+
+        mock_bun = Mock()
+        mock_bun.name = Helpers.BULICHKA['name']
+        mock_bun.price = Helpers.BULICHKA['price']
+        mock_bun.get_name.return_value = Helpers.BULICHKA['name']
+        mock_bun.get_price.return_value = Helpers.BULICHKA['price']
+
         burger = Burger()
 
-        burger.set_buns(bun)
-        burger.add_ingredient(ingredient1)
-        burger.add_ingredient(ingredient2)
+        burger.set_buns(mock_bun)
+        burger.add_ingredient(mock_ingredient1)
+        burger.add_ingredient(mock_ingredient2)
 
-        amount_price = Helpers.LUCHOK['price'] + Helpers.SOUSETS['price'] + (Helpers.BULICHKA['price'] * 2)
+        amount_price = mock_ingredient1.price + mock_ingredient2.price + (mock_bun.price * 2)
 
-        result = f'(==== {Helpers.BULICHKA["name"]} ====)\n' \
-                 f'= {Helpers.SOUSETS["ingredient_type"].lower()} {Helpers.SOUSETS["name"]} =\n' \
-                 f'= {Helpers.LUCHOK["ingredient_type"].lower()} {Helpers.LUCHOK["name"]} =\n' \
-                 f'(==== {Helpers.BULICHKA["name"]} ====)\n' \
+        result = f'(==== {mock_bun.name} ====)\n' \
+                 f'= {mock_ingredient1.ingredient_type.lower()} {mock_ingredient1.name} =\n' \
+                 f'= {mock_ingredient2.ingredient_type.lower()} {mock_ingredient2.name} =\n' \
+                 f'(==== {mock_bun.name} ====)\n' \
                  f'\nPrice: {amount_price}'
 
         assert burger.get_receipt() == result
