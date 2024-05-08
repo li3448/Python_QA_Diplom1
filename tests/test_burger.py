@@ -97,5 +97,3 @@ class TestBurger:
         burger.add_ingredient(mock_ingredient)
 
         assert "Unique-Ingredient-Name" in burger.get_receipt()
-
-klkk
