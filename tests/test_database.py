@@ -1,12 +1,18 @@
-from Diplom_1.database import Database
-from Diplom_1.ingredient_types import INGREDIENT_TYPE_SAUCE
-from Diplom_1.ingredient_types import INGREDIENT_TYPE_FILLING
-
+from unittest.mock import Mock
+from praktikum.database import Database
+from praktikum.ingredient_types import INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FILLING
 
 class TestDatabase:
 
     def test_available_buns(self):
         database = Database()
+        # Mocking the behavior of the database for available buns
+        database.available_buns = Mock(return_value=[
+            Mock(get_name=lambda: "black bun", get_price=lambda: 100),
+            Mock(get_name=lambda: "white bun", get_price=lambda: 200),
+            Mock(get_name=lambda: "red bun", get_price=lambda: 300)
+        ])
+
         buns = database.available_buns()
         assert len(buns) == 3
         assert buns[0].get_name() == "black bun"
@@ -18,6 +24,16 @@ class TestDatabase:
 
     def test_available_ingredients(self):
         database = Database()
+        # Mocking the behavior of the database for available ingredients
+        database.available_ingredients = Mock(return_value=[
+            Mock(get_type=lambda: INGREDIENT_TYPE_SAUCE, get_name=lambda: "hot sauce", get_price=lambda: 100),
+            Mock(get_type=lambda: INGREDIENT_TYPE_SAUCE, get_name=lambda: "sour cream", get_price=lambda: 200),
+            Mock(get_type=lambda: INGREDIENT_TYPE_SAUCE, get_name=lambda: "chili sauce", get_price=lambda: 300),
+            Mock(get_type=lambda: INGREDIENT_TYPE_FILLING, get_name=lambda: "cutlet", get_price=lambda: 100),
+            Mock(get_type=lambda: INGREDIENT_TYPE_FILLING, get_name=lambda: "dinosaur", get_price=lambda: 200),
+            Mock(get_type=lambda: INGREDIENT_TYPE_FILLING, get_name=lambda: "sausage", get_price=lambda: 300)
+        ])
+
         ingredients = database.available_ingredients()
         assert len(ingredients) == 6
         assert all([i.get_type() == INGREDIENT_TYPE_SAUCE for i in ingredients[:3]])

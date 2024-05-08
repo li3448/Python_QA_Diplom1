@@ -1,5 +1,5 @@
-from Diplom_1.ingredient import Ingredient
-from Diplom_1.ingredient_types import INGREDIENT_TYPE_SAUCE
+from praktikum.ingredient import Ingredient
+from praktikum.ingredient_types import INGREDIENT_TYPE_SAUCE
 
 
 class TestIngredient:
