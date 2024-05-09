@@ -1,4 +1,4 @@
-class Burger:
+class BurgerData:
     bun_name = 'plain burger bun'
     bun_price_1 = 1.50
 
