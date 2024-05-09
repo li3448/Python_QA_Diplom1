@@ -9,6 +9,7 @@ from practicum.ingredient import Ingredient
 
 class TestBurger:
 
+    @allure.title('Проверка имени для установленной булки у бургера')
     def test_set_buns_name(self):
         mock_bun = Mock()
         mock_bun.configure_mock(name=BurgerData.bun_name, price=BurgerData.bun_price_1)
@@ -16,9 +17,20 @@ class TestBurger:
         burger.set_buns(mock_bun)
         assert burger.bun.name == BurgerData.bun_name
 
+    @allure.title('Проверка цены для установленной булки у бургера')
     def test_set_buns_price(self):
         mock_bun = Mock()
         mock_bun.configure_mock(name=BurgerData.bun_name, price=BurgerData.bun_price_1)
         burger = Burger()
         burger.set_buns(mock_bun)
         assert burger.bun.price == BurgerData.bun_price_1
+
+    @allure.title('Проверка добавлениея ингридиента к бургеру')
+    def test_add_ingredient(self):
+        burger = Burger()
+        ingredient = Ingredient(ingredient_type=BurgerData.ingredient_type_filling,
+                                name=BurgerData.ingredient_name_filling,
+                                price=BurgerData.ingredient_price_filling)
+        burger.add_ingredient(ingredient)
+        assert len(burger.ingredients) == 1
+

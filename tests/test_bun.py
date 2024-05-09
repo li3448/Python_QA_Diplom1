@@ -1,5 +1,4 @@
 from practicum.bun import Bun
-import pytest
 import allure
 from data import *
 
