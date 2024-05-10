@@ -2,7 +2,6 @@ class BurgerData:
     bun_name = 'plain burger bun'
     bun_price_1 = 1.50
 
-    burger_price_100 = 100
     burger_price_99 = 104.99
 
     ingredient_type_sauce = 'SAUCE'

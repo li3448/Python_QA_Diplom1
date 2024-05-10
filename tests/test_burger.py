@@ -94,3 +94,4 @@ class TestBurger:
                                      f'Price: {BurgerData.burger_price_99}'])
         actual_result = burger.get_receipt()
         assert actual_result == expected_result
+
