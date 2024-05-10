@@ -58,3 +58,21 @@ class TestBurger:
         burger.move_ingredient(1, 0)
         assert burger.ingredients[0] == ingredient_1
         assert burger.ingredients[1] == ingredient_0
+
+    @allure.title('Проверка получения цены целого бургера из ингредиентов и булки')
+    @pytest.mark.parametrize('bun_price, ingredient_1_price, ingredient_2_price', [[10, 20, 30], [9.9, 19.9, 29.9]])
+    def test_get_price_of_burger(self, bun_price, ingredient_1_price, ingredient_2_price):
+        mock_bun = Mock()
+        mock_ingredient_1 = Mock()
+        mock_ingredient_2 = Mock()
+        mock_bun.get_price.return_value = bun_price
+        mock_ingredient_1.get_price.return_value = ingredient_1_price
+        mock_ingredient_2.get_price.return_value = ingredient_2_price
+        burger = Burger()
+        burger.bun = mock_bun
+        burger.ingredients.append(mock_ingredient_1)
+        burger.ingredients.append(mock_ingredient_2)
+        expected_result = (bun_price * 2 + ingredient_1_price + ingredient_2_price)
+        actual_result = burger.get_price()
+        assert expected_result == actual_result
+
