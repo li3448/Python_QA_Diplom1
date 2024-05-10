@@ -3,7 +3,7 @@ from practicum.bun import Bun
 import pytest
 import allure
 from data import *
-from unittest.mock import Mock, patch
+from unittest.mock import Mock
 from practicum.ingredient import Ingredient
 
 

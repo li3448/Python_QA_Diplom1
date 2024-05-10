@@ -1,5 +1,4 @@
 from practicum.database import Database
-import pytest
 import allure
 
 
