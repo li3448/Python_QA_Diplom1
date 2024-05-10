@@ -70,9 +70,27 @@ class TestBurger:
         mock_ingredient_2.get_price.return_value = ingredient_2_price
         burger = Burger()
         burger.bun = mock_bun
-        burger.ingredients.append(mock_ingredient_1)
-        burger.ingredients.append(mock_ingredient_2)
+        burger.ingredients.extend([mock_ingredient_1, mock_ingredient_2])
         expected_result = (bun_price * 2 + ingredient_1_price + ingredient_2_price)
         actual_result = burger.get_price()
         assert expected_result == actual_result
 
+    @allure.title('Проверка получения чека')
+    def test_get_receipt(self):
+        bun = Bun(BurgerData.bun_name, BurgerData.bun_price_1)
+        ingredient_1 = Ingredient(ingredient_type=BurgerData.ingredient_type_filling,
+                                  name=BurgerData.ingredient_name_filling,
+                                  price=BurgerData.ingredient_price_filling)
+        ingredient_2 = Ingredient(ingredient_type=BurgerData.ingredient_type_sauce,
+                                  name=BurgerData.ingredient_name_sauce,
+                                  price=BurgerData.ingredient_price_sauce)
+        burger = Burger()
+        burger.set_buns(bun)
+        burger.ingredients.extend([ingredient_1, ingredient_2])
+        expected_result = '\n'.join([f'(==== {BurgerData.bun_name} ====)',
+                                     f'= {BurgerData.ingredient_type_filling.lower()} {BurgerData.ingredient_name_filling} =',
+                                     f'= {BurgerData.ingredient_type_sauce.lower()} {BurgerData.ingredient_name_sauce} =',
+                                     f'(==== {BurgerData.bun_name} ====)\n',
+                                     f'Price: {BurgerData.burger_price_99}'])
+        actual_result = burger.get_receipt()
+        assert actual_result == expected_result
