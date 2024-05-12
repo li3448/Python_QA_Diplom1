@@ -1,5 +1,4 @@
 from unittest.mock import patch, Mock
-import allure
 import pytest
 from bun import Bun
 from burger import Burger
@@ -7,9 +6,7 @@ from ingredient import Ingredient
 from database import Database
 
 class TestBun:
-    @allure.title('Проверка возврата имени из аргумента конструктора класса name, класса Bun.')
-    @allure.description('Проверяем, что метод get_name, возвращает имя, полученное из объекта класса Bun, значение которого,'
-                        'заимствуется из базы данных')
+
     @pytest.mark.parametrize("index", [0, 1, 2])
     def test_get_name(self, index):
         database = Database()
@@ -19,9 +16,7 @@ class TestBun:
         bun = Bun(bun_name, bun_price)
         assert bun.get_name() == bun_name
 
-    @allure.title('Проверка возврата цены из аргумента конструктора класса price, класса Bun.')
-    @allure.description('Проверяем, что метод get_price, возвращает цену, полученную из объекта класса Bun, значение которого,'
-                        'заимствуется из базы данных')
+
     @pytest.mark.parametrize("index", [0, 1, 2])
     def test_get_price(self, index):
         database = Database()
@@ -32,10 +27,6 @@ class TestBun:
         assert bun.get_price() == bun_price
 
 class TestBurger:
-    @allure.title('Проверка назначения переденного объекта класса в качестве аргумента bun')
-    @allure.description(
-        'Проверяем, что метод set_buns, назначает переданный ему объект класса в качестве'
-        'аргумента метода bun')
     @patch('Diplom_1.bun.Bun')
     def test_set_buns(self, mock_bun):
         burger = Burger()
@@ -48,10 +39,6 @@ class TestBurger:
 
         assert burger.bun == mock_bun
 
-    @allure.title('Проверка добавления значений переданного объекта класса Ingredient в список конструктора класса ingredients')
-    @allure.description(
-        'Проверяем, что метод add_ingredient, после передачи в него объекта класса Ingredient, добавляет значения класса'
-        'в список конструктора класса ingredients')
     @patch('Diplom_1.ingredient.Ingredient')
     @pytest.mark.parametrize('index', [0, 1, 2, 3, 4, 5])
     def test_add_ingredient(self, mock_ingredient, index):
@@ -71,10 +58,6 @@ class TestBurger:
         assert burger.ingredients[0].get_name() == database_ingredient[index].get_name()
         assert burger.ingredients[0].get_price() == database_ingredient[index].get_price()
 
-    @allure.title('Проверка удаления элемента из списка ingredients, конструктора класса ingredients')
-    @allure.description(
-        'Проверяем, что метод remove_ingredient после передачи в него идекса элемента списка ingredients, конструктора класса ingredients'
-        'удаляет данный элемент из списка')
     @patch('Diplom_1.ingredient.Ingredient')
     def test_remove_ingredient(self, mock_ingredient):
         burger = Burger()
@@ -91,12 +74,6 @@ class TestBurger:
 
         assert len(burger.ingredients) == 0
 
-    @allure.title('Проверка замены элемента из списка ingredients, конструктора класса ingredient, на новый элемент')
-    @allure.description(
-        'Проверяем, что метод move_ingredient после передачи в него идекса элемента списка ingredients, конструктора класса ingredients'
-        'и нового индекса, для указания, на какое место в списке, будет перемещен элемент списка, соответствующий переданному значению imdex,'
-        'происходит извлечение из списка элемента, который соответствует значению index и установка его на новое место в списке,'
-        'которое соответствует значению new_index')
     @patch('Diplom_1.ingredient.Ingredient')
     def test_move_ingredient(self, mock_ingredient):
         burger = Burger()
@@ -116,12 +93,6 @@ class TestBurger:
         assert burger.ingredients[0].get_price() == database_ingredient[0].get_price()
 
 
-    @allure.title('Проверка, получения суммарной стоимости буогера, которая состоит из стоимости булки, '
-                  'умноженной на 2 и стомости выбранных ингридиентов')
-    @allure.description(
-        'Проверяем, что метод get_price, возвращает суммарную стоимость бургера, которая была сформирована,'
-        'из полученной стоимости булки, умноженной на 2 и полученной стоимости ингредиентов, добавленных в список ingredients'
-        'констуктора класса Ingredient')
     @patch('Diplom_1.ingredient.Ingredient')
     @patch('Diplom_1.bun.Bun')
     @pytest.mark.parametrize('index_bun, index_sause, index_filling',
@@ -159,11 +130,6 @@ class TestBurger:
 
         assert price == 400
 
-    @allure.title('Проверка, получения чека, состоящего из наименования ингредиентов бургера и общей суммы')
-    @allure.description(
-        'Проверяем, что метод get_receipt возвращает, чек с указаением в заголовке имени булки, полученной из аргумента bun,'
-        'конструктора класса, типа и имени ингредиентов, полученных из списка ingredients конструктора класса,'
-        'а также суммарной стоимости бургера, полученной в спомощью метода get_price')
     @patch('Diplom_1.ingredient.Ingredient')
     @patch('Diplom_1.bun.Bun')
     @pytest.mark.parametrize('index_bun, index_sauce, index_filling',
@@ -211,9 +177,6 @@ class TestBurger:
 
 class TestIngredient:
 
-    @allure.title('Проверка, получения цены, из переденного в конструктор класса Ingredient, элемента из базы данных')
-    @allure.description(
-        'Проверяем, что метод get_price возвращает, цену из элемента, который был передан в конструктор класса Ingredient из списка ingredients')
     @pytest.mark.parametrize('index', [0, 1, 2, 3, 4, 5])
     def test_get_price(self, index):
         database = Database()
@@ -225,9 +188,6 @@ class TestIngredient:
 
         assert ingredients.get_price() == price
 
-    @allure.title('Проверка, получения имени, из переденного в конструктор класса Ingredient, элемента из базы данных')
-    @allure.description(
-        'Проверяем, что метод get_name возвращает, имя из элемента, который был передан в конструктор класса Ingredient из списка ingredients')
     @pytest.mark.parametrize('index', [0, 1, 2, 3, 4, 5])
     def test_get_name(self, index):
         database = Database()
@@ -239,9 +199,6 @@ class TestIngredient:
 
         assert ingredients.get_name() == name
 
-    @allure.title('Проверка, получения типа ингредиета, из переденного в конструктор класса Ingredient, элемента из базы данных')
-    @allure.description(
-        'Проверяем, что метод get_type возвращает, тип ингредиента из элемента, который был передан в конструктор класса Ingredient из списка ingredients')
     @pytest.mark.parametrize('index', [0, 1, 2, 3, 4, 5])
     def test_get_type(self, index):
         database = Database()
@@ -255,9 +212,7 @@ class TestIngredient:
 
 
 class TestDatabase:
-    @allure.title('Проверка, получения списка buns с элиментами bun , конструктора класса Database')
-    @allure.description(
-        'Проверяем, что метод available_buns возвращает, список, содержащий элементы bun')
+
     @pytest.mark.parametrize('index', [0, 1, 2])
     def test_available_buns(self, index):
         database = Database()
@@ -266,9 +221,7 @@ class TestDatabase:
 
         assert bun_name == bun_list[index].name
 
-    @allure.title('Проверка, получения списка buns с элиментами bun , конструктора класса Database')
-    @allure.description(
-        'Проверяем, что метод available_ingredients возвращает, список, содержащий элементы ingredient')
+
     @pytest.mark.parametrize('index', [0, 1, 2])
     def test_available_ingredients(self, index):
         database = Database()
@@ -276,7 +229,6 @@ class TestDatabase:
         ingredient_name = database.ingredients[index].name
 
         assert ingredient_name == ingredients_list[index].name
-
 
 
 
