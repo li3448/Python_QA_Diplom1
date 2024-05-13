@@ -1,33 +1,10 @@
 from unittest.mock import patch, Mock
 import pytest
-from bun import Bun
-from burger import Burger
-from ingredient import Ingredient
-from database import Database
-
-class TestBun:
-
-    @pytest.mark.parametrize("index", [0, 1, 2])
-    def test_get_name(self, index):
-        database = Database()
-        bun_name = database.buns[index].get_name()
-        bun_price = database.buns[index].get_price()
-
-        bun = Bun(bun_name, bun_price)
-        assert bun.get_name() == bun_name
-
-
-    @pytest.mark.parametrize("index", [0, 1, 2])
-    def test_get_price(self, index):
-        database = Database()
-        bun_name = database.buns[index].get_name()
-        bun_price = database.buns[index].get_price()
-
-        bun = Bun(bun_name, bun_price)
-        assert bun.get_price() == bun_price
+from practicum.burger import Burger
+from practicum.database import Database
 
 class TestBurger:
-    @patch('Diplom_1.bun.Bun')
+    @patch('practicum.bun.Bun')
     def test_set_buns(self, mock_bun):
         burger = Burger()
         database = Database()
@@ -39,7 +16,7 @@ class TestBurger:
 
         assert burger.bun == mock_bun
 
-    @patch('Diplom_1.ingredient.Ingredient')
+    @patch('practicum.ingredient.Ingredient')
     @pytest.mark.parametrize('index', [0, 1, 2, 3, 4, 5])
     def test_add_ingredient(self, mock_ingredient, index):
         burger = Burger()
@@ -58,7 +35,7 @@ class TestBurger:
         assert burger.ingredients[0].get_name() == database_ingredient[index].get_name()
         assert burger.ingredients[0].get_price() == database_ingredient[index].get_price()
 
-    @patch('Diplom_1.ingredient.Ingredient')
+    @patch('practicum.ingredient.Ingredient')
     def test_remove_ingredient(self, mock_ingredient):
         burger = Burger()
         database = Database()
@@ -74,7 +51,7 @@ class TestBurger:
 
         assert len(burger.ingredients) == 0
 
-    @patch('Diplom_1.ingredient.Ingredient')
+    @patch('practicum.ingredient.Ingredient')
     def test_move_ingredient(self, mock_ingredient):
         burger = Burger()
         database = Database()
@@ -93,8 +70,8 @@ class TestBurger:
         assert burger.ingredients[0].get_price() == database_ingredient[0].get_price()
 
 
-    @patch('Diplom_1.ingredient.Ingredient')
-    @patch('Diplom_1.bun.Bun')
+    @patch('practicum.ingredient.Ingredient')
+    @patch('practicum.bun.Bun')
     @pytest.mark.parametrize('index_bun, index_sause, index_filling',
                              [
                                  (0, 0, 3)
@@ -130,8 +107,8 @@ class TestBurger:
 
         assert price == 400
 
-    @patch('Diplom_1.ingredient.Ingredient')
-    @patch('Diplom_1.bun.Bun')
+    @patch('practicum.ingredient.Ingredient')
+    @patch('practicum.bun.Bun')
     @pytest.mark.parametrize('index_bun, index_sauce, index_filling',
                              [
                                  (0, 0, 4)
@@ -172,72 +149,3 @@ class TestBurger:
         assert "filling" in receipt
         assert "dinosaur" in receipt
         assert "Price: 500" in receipt
-
-
-
-class TestIngredient:
-
-    @pytest.mark.parametrize('index', [0, 1, 2, 3, 4, 5])
-    def test_get_price(self, index):
-        database = Database()
-        type = database.ingredients[index].get_type()
-        name = database.ingredients[index].get_name()
-        price = database.ingredients[index].get_price()
-
-        ingredients = Ingredient(type, name, price)
-
-        assert ingredients.get_price() == price
-
-    @pytest.mark.parametrize('index', [0, 1, 2, 3, 4, 5])
-    def test_get_name(self, index):
-        database = Database()
-        type = database.ingredients[index].get_type()
-        name = database.ingredients[index].get_name()
-        price = database.ingredients[index].get_price()
-
-        ingredients = Ingredient(type, name, price)
-
-        assert ingredients.get_name() == name
-
-    @pytest.mark.parametrize('index', [0, 1, 2, 3, 4, 5])
-    def test_get_type(self, index):
-        database = Database()
-        type = database.ingredients[index].get_type()
-        name = database.ingredients[index].get_name()
-        price = database.ingredients[index].get_price()
-
-        ingredients = Ingredient(type, name, price)
-
-        assert ingredients.get_type() == type
-
-
-class TestDatabase:
-
-    @pytest.mark.parametrize('index', [0, 1, 2])
-    def test_available_buns(self, index):
-        database = Database()
-        bun_list = database.available_buns()
-        bun_name = database.buns[index].name
-
-        assert bun_name == bun_list[index].name
-
-
-    @pytest.mark.parametrize('index', [0, 1, 2])
-    def test_available_ingredients(self, index):
-        database = Database()
-        ingredients_list = database.available_ingredients()
-        ingredient_name = database.ingredients[index].name
-
-        assert ingredient_name == ingredients_list[index].name
-
-
-
-
-
-
-
-
-
-
-
-
