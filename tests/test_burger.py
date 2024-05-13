@@ -1,7 +1,5 @@
 from unittest.mock import Mock, patch
-
 import pytest
-
 import data
 from praktikum.burger import Burger
 from praktikum.ingredient_types import INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FILLING
@@ -71,7 +69,9 @@ class TestBurger:
             burger.ingredients.append(ingredient_mock)
         mock_get_price.return_value = 800
         text_receipt = burger.get_receipt()
-
-        assert 'black' and 'hot_one' and '800' and types.lower() in text_receipt
-
+        list_receipt = text_receipt.split('\n')
+        assert ((len(list_receipt) == 7)
+                and (f'(==== black ====)' == (list_receipt[0] and (list_receipt[-3]))
+                and (f'= {types.lower()} hot_one =' == (list_receipt[1] and list_receipt[2] and list_receipt[3])))
+                and (f'Price: 800' in list_receipt[-1]))
 
