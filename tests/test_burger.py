@@ -42,6 +42,4 @@ class TestBurger:
     def test_get_receipt(self, burger_full, bun, ingredient, ingredient_2):
         burger = burger_full
 
-        print(burger.get_receipt())
-
         assert burger_receipt == burger.get_receipt()
