@@ -1,6 +1,6 @@
 from unittest.mock import patch, Mock
 import pytest
-from practicum.database import Database
+from Diplom_1.practicum.database import Database
 
 class TestDatabase:
 

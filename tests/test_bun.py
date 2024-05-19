@@ -1,7 +1,7 @@
 from unittest.mock import patch, Mock
 import pytest
-from practicum.bun import Bun
-from database import Database
+from Diplom_1.practicum.bun import Bun
+from Diplom_1.practicum.database import Database
 class TestBun:
 
     @pytest.mark.parametrize("index", [0, 1, 2])
