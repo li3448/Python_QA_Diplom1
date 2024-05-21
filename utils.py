@@ -9,4 +9,4 @@ def generate_random_string(length):
 
 
 def generate_random_float(from_=50, to=1000):
-    return random.uniform(50, 1000)
+    return random.uniform(from_, to)
