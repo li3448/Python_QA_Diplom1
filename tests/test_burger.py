@@ -149,10 +149,6 @@ class TestBurger:
 
         receipt = burger.get_receipt()
 
+        print(receipt)
 
-        assert "black bun" in receipt
-        assert "sauce" in receipt
-        assert "hot sauce" in receipt
-        assert "filling" in receipt
-        assert "dinosaur" in receipt
-        assert "Price: 500" in receipt
+        assert f'(==== black bun ====)\n= sauce hot sauce =\n= filling dinosaur =\n(==== black bun ====)\n\nPrice: 500' in receipt
