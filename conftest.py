@@ -3,7 +3,7 @@ import pytest
 from praktikum.bun import Bun
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture(scope = 'function')
 def bun_create():
-    res = Bun(name = 'Сливочный', price= 2.5)
-    return res
+    bun = Bun(name = 'Сливочный', price= 2.5)
+    return bun
