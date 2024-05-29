@@ -3,6 +3,7 @@ from bun import Bun
 from data import BunData, IngrData
 from ingredient import Ingredient
 from burger import Burger
+from database import Database
 import ingredient_types
 
 @pytest.fixture()
@@ -20,3 +21,7 @@ def set_data_ingr():
 @pytest.fixture()
 def file_o_fish():
     return Burger()
+
+@pytest.fixture()
+def database():
+    return Database()
