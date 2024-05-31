@@ -1,8 +1,8 @@
-import pytest
-from bun import Bun
-from burger import Burger
-from ingredient import Ingredient
-from ingredient_types import INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FILLING
+from praktikum.bun import Bun
+from praktikum.burger import Burger
+from praktikum.ingredient import Ingredient
+from praktikum.ingredient_types import INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FILLING
+from conftest import mock_bun, mock_ingredients
 
 
 class TestBurgerFunction:
@@ -42,4 +42,9 @@ class TestBurgerFunction:
         burger.set_buns(bun)
         assert burger.get_price() == 2590.0
 
-    #def test_burger_get_receipt(self):
+    def test_burger_get_receipt(self, mock_bun, mock_ingredients):
+        burger = Burger()
+        burger.set_buns(mock_bun)
+        burger.add_ingredient(mock_ingredients)
+        receipt = burger.get_receipt()
+        assert 'Price: 2126' in receipt
