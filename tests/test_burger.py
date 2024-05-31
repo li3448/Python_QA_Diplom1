@@ -1,3 +1,5 @@
+import pytest
+
 from praktikum.bun import Bun
 from praktikum.burger import Burger
 from praktikum.ingredient import Ingredient
@@ -6,11 +8,18 @@ from conftest import mock_bun, mock_ingredients
 
 
 class TestBurgerFunction:
-    def test_burger_set_buns(self):
+    @pytest.mark.parametrize(
+        'name,price',
+        [
+            ['Звёздная булка JK-22', 1232],
+            ['Краторная булка N-200i', 1255]
+        ]
+    )
+    def test_burger_set_buns(self, name, price):
         burger = Burger()
-        bun = Bun('Краторная булка N-200i', 1255)
+        bun = Bun(name, price)
         burger.set_buns(bun)
-        assert burger.bun.get_name() == 'Краторная булка N-200i'
+        assert burger.bun.get_name() == name
 
     def test_burger_add_ingredient(self):
         burger = Burger()
