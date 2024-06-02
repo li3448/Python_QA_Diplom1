@@ -4,6 +4,7 @@ import pytest
 import ingredient_types
 
 
+
 class TestBurger:
 
     def test_set_bun_none_true(self, super_burger):
@@ -60,10 +61,11 @@ class TestBurger:
         burger = Burger()
         burger.bun = mock_bun
         burger.ingredients = [mock_ingredient]
-        burger.get_price = mock_burger_price
-        assert ingredient_types.BUN_NAME and ingredient_types.INGREDIENT_TYPE_FILLING in burger.get_receipt()
-
-
+        expected_result = '(==== супер булка ====)\n' \
+                          '= супер соус СУПЕР НАПОЛНЕНИЕ =\n' \
+                          '(==== супер булка ====)\n' \
+                          '\nPrice: 70.0'
+        assert burger.get_receipt() == expected_result
 
 
 
