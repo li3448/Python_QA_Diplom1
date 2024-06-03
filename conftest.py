@@ -7,11 +7,9 @@ from Diplom_1.praktikum.database import Database
 
 
 
-
 @pytest.fixture
 def test_bun():
     return Bun(name="Kratorskaya", price=1255)
-
 
 @pytest.fixture
 def mock_bun():
@@ -78,12 +76,10 @@ def database():
 
 @pytest.fixture
 def ingredient():
-    # Создаем фикстуру для ингредиента
     return Ingredient("filling", "Tomato", 0.75)
 
 @pytest.fixture
 def sauce():
-    # Создаем фикстуру для соуса
     return Ingredient("sauce", "Ketchup", 1.0)
 
 
