@@ -4,6 +4,7 @@ from praktikum import ingredient_types
 from data import Data
 
 
+# Проверки Ingredient отдельно, без моков
 class TestIngredient:
     def test_get_name_ingredient_return_name_ingredient(self, ingredient_instance):
         assert ingredient_instance.get_name() == Data.BUN_NAME
