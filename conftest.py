@@ -16,9 +16,6 @@ def mock_database():
     data = Database()
     return data
 
-
-
-
 @pytest.fixture(scope='function')
 def ibgredient():
     ingredient = Ingredient(IngredientData.type, IngredientData.name, IngredientData.price)
@@ -28,6 +25,12 @@ def ibgredient():
 def create_bun():
     bun = Bun(name = BunData.bun, price= BunData.price)
     return bun
+
+@pytest.fixture(scope='function')
+def data_base_mock():
+    mock_data = Mock()
+    mock_data.return_value = [Bun("black bun", 100)]
+    return mock_data
 
 @pytest.fixture(scope='function')
 def add_ingredient():
@@ -56,3 +59,4 @@ def bun_mock():
     mock_bun.get_name.return_value = BunData.bun
     mock_bun.get_price.return_value = BunData.price
     return mock_bun
+
