@@ -18,3 +18,5 @@ class TestIngredient:
         name, price, type_ingredient = DataIngredient.get_data_ingredient()
         ingredient = Ingredient(ingredient_type=type_ingredient, name=name, price=price)
         assert ingredient.get_type() == type_ingredient
+
+

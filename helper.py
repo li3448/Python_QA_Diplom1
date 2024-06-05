@@ -25,3 +25,4 @@ class BurgerHelper:
             burger.add_ingredient(ingredient)
             part_receipt += f"= {ingredient.get_type()} {ingredient.get_name()} =\n"
         return part_receipt, price_ingredients
+

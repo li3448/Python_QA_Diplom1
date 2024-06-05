@@ -56,3 +56,4 @@ class TestBurger:
                           f"(==== {bun.get_name()} ====)\n\n" \
                           f"Price: {bun.get_price() * 2 + price}"
         assert burger.get_receipt() == expected_output
+
