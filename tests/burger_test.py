@@ -1,4 +1,4 @@
-from burger import Burger
+from praktikum.burger import Burger
 
 
 class TestBurgers:
