@@ -1,5 +1,5 @@
-from data import Helpers
-from praktikum.ingredient import Ingredient
+from .. data import Helpers
+from .. praktikum.ingredient import Ingredient
 
 class TestIngredients:
 

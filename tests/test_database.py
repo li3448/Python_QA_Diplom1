@@ -1,4 +1,4 @@
-from praktikum.database import Database
+from ..praktikum.database import Database
 class TestDatabase:
 
     def test_check_ingredients(self):

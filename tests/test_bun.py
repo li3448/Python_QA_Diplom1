@@ -1,5 +1,5 @@
-from data import Helpers
-from praktikum.bun import Bun
+from .. data import Helpers
+from ..praktikum.bun import Bun
 
 
 class TestBun:

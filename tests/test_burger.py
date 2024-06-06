@@ -1,18 +1,16 @@
-from unittest.mock import Mock, patch
-from praktikum.burger import Burger
-from praktikum.bun import Bun
-from praktikum.ingredient import Ingredient
-from data import Helpers
+from unittest.mock import Mock
+from ..praktikum.burger import Burger
+from ..praktikum.bun import Bun
+from ..praktikum.ingredient import Ingredient
+from .. data import Helpers
 
 
 class TestBurger:
 
     def test_set_buns(self):  #Проверка добавления булки в бургер
-
         mock_bun = Mock()
         mock_bun.bun = Bun(Helpers.MOCK_BUN_NAME, Helpers.MOCK_BUN_PRICE)
         burger = Burger()
-
         burger.set_buns(mock_bun.bun)
 
         assert burger.bun.get_name() == Helpers.MOCK_BUN_NAME
