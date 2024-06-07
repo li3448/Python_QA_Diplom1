@@ -18,6 +18,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -41,28 +46,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python tests.Python tests for test_bun.TestBun.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_bun.TestBun.test_bun_create.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_burger.TestBurger.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_burger.TestBurger.test_add_ingredient.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_burger.TestBurger.test_get_price.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_burger.TestBurger.test_get_receipt.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_burger.TestBurger.test_move_ingredient.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_burger.TestBurger.test_remove_ingredient.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_burger.TestBurger.test_set_buns.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_database.TestDatabase.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_database.TestDatabase.test_available_buns.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_database.TestDatabase.test_available_ingredients.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in test_bun.py.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests in tests.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Rebasing develop1&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/user/PycharmProjects/Diplom_1&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.Python tests for test_bun.TestBun.executor": "Run",
+    "Python tests.Python tests for test_bun.TestBun.test_bun_create.executor": "Run",
+    "Python tests.Python tests for test_burger.TestBurger.executor": "Run",
+    "Python tests.Python tests for test_burger.TestBurger.test_add_ingredient.executor": "Run",
+    "Python tests.Python tests for test_burger.TestBurger.test_get_price.executor": "Run",
+    "Python tests.Python tests for test_burger.TestBurger.test_get_receipt.executor": "Run",
+    "Python tests.Python tests for test_burger.TestBurger.test_move_ingredient.executor": "Run",
+    "Python tests.Python tests for test_burger.TestBurger.test_remove_ingredient.executor": "Run",
+    "Python tests.Python tests for test_burger.TestBurger.test_set_buns.executor": "Run",
+    "Python tests.Python tests for test_database.TestDatabase.executor": "Run",
+    "Python tests.Python tests for test_database.TestDatabase.test_available_buns.executor": "Run",
+    "Python tests.Python tests for test_database.TestDatabase.test_available_ingredients.executor": "Run",
+    "Python tests.Python tests in test_bun.py.executor": "Run",
+    "Python tests.Python tests in tests.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "develop1",
+    "last_opened_file_path": "C:/Users/user/PycharmProjects/Diplom_1",
+    "settings.editor.selected.configurable": "Errors"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\user\PycharmProjects\Diplom_1\tests" />
@@ -171,11 +176,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for test_database.TestDatabase" />
         <item itemvalue="Python tests.Python tests for test_database.TestDatabase.test_available_ingredients" />
         <item itemvalue="Python tests.Python tests for test_database.TestDatabase.test_available_buns" />
-        <item itemvalue="Python tests.Python tests for test_burger.TestBurger" />
+        <item itemvalue="Python tests.Python tests for test_database.TestDatabase" />
         <item itemvalue="Python tests.Python tests for test_burger.TestBurger.test_get_receipt" />
+        <item itemvalue="Python tests.Python tests for test_burger.TestBurger" />
       </list>
     </recent_temporary>
   </component>
@@ -213,6 +218,17 @@
     </task>
     <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Diplom_1" />
