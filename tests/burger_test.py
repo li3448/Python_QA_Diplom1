@@ -22,8 +22,9 @@ class TestBurgers:
      def test_move_ingridient(self, ingridient_mock):
          ingridient = Burger()
          ingridient.add_ingredient(ingridient_mock)
+         ingridient.add_ingredient(ingridient_mock)
          ingridient.move_ingredient(0, 1)
-         assert len(ingridient.ingredients) == 1
+         assert ingridient.ingredients[1].get_name() == 'Гарнир'
 
      def test_get_price(self, bun_mock, ingridient_mock):
          bun = Burger()
@@ -35,5 +36,4 @@ class TestBurgers:
          bun = Burger()
          bun.set_buns(bun_mock)
          bun.add_ingredient(ingridient_mock)
-         bun.get_receipt()
          assert bun.get_receipt() == '(==== Кунжут ====)\n= соус Гарнир =\n(==== Кунжут ====)\n\nPrice: 30'
