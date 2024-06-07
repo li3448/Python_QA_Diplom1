@@ -35,9 +35,8 @@ class TestBurger:
         price = burger.get_price()
         assert price == 334
 
-    @pytest.mark.parametrize('text_in_receipt', ['==== CherryBun ====', '246'])
-    def test_get_receipt_for_bun_and_price(self, burger, mock_bun, text_in_receipt):
+
+    def test_get_receipt_for_bun_with_price(self, burger, mock_bun):
         burger.set_buns(mock_bun)
         lst = burger.get_receipt()
-        assert text_in_receipt in lst
-
+        assert lst == '(==== CherryBun ====)\n(==== CherryBun ====)\n\nPrice: 246'
