@@ -1,28 +1,41 @@
 import pytest
-from unittest.mock import patch, Mock
+from unittest.mock import patch
 from praktikum.burger import Burger
 from praktikum.ingredient_types import INGREDIENT_TYPE_SAUCE
-from generators import *
-
+from generators_data import generate_random_bun_name, generate_random_bun_price, generate_random_ingredient_name, generate_random_ingredient_price
 
 @pytest.fixture(scope='function')
-def mock_bun():
-    with patch('praktikum.burger.Bun') as mock_bun_class:
-        mock_bun_instance = mock_bun_class.return_value
-        mock_bun_instance.name = bun_name
-        mock_bun_instance.price = bun_price
+def bun_name():
+    return generate_random_bun_name()
+
+@pytest.fixture(scope='function')
+def bun_price():
+    return generate_random_bun_price()
+
+@pytest.fixture(scope='function')
+def ingredient_name():
+    return generate_random_ingredient_name()
+
+@pytest.fixture(scope='function')
+def ingredient_price():
+    return generate_random_ingredient_price()
+
+@pytest.fixture(scope='function')
+def mock_bun(bun_name, bun_price):
+    with patch('praktikum.burger.Bun') as MockBun:
+        mock_bun_instance = MockBun.return_value
+        mock_bun_instance.get_name.return_value = bun_name
+        mock_bun_instance.get_price.return_value = bun_price
         yield mock_bun_instance
 
-
 @pytest.fixture(scope='function')
-def mock_ingredient():
-    with patch('praktikum.burger.Ingredient') as mock_ingredient_class:
-        mock_ingredient_instance = mock_ingredient_class.return_value
-        mock_ingredient_instance.type = INGREDIENT_TYPE_SAUCE
-        mock_ingredient_instance.name = ingredient_name
-        mock_ingredient_instance.price = ingredient_price
+def mock_ingredient(ingredient_name, ingredient_price):
+    with patch('praktikum.burger.Ingredient') as MockIngredient:
+        mock_ingredient_instance = MockIngredient.return_value
+        mock_ingredient_instance.get_type.return_value = INGREDIENT_TYPE_SAUCE
+        mock_ingredient_instance.get_name.return_value = ingredient_name
+        mock_ingredient_instance.get_price.return_value = ingredient_price
         yield mock_ingredient_instance
-
 
 @pytest.fixture(scope='function')
 def mock_burger(mock_ingredient):
