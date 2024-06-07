@@ -34,6 +34,6 @@ class TestBurger:
         burger = Burger()
         burger.set_buns(bun_mock)
         burger.add_ingredient(ingredient_mock)
-        assert ingredient_mock.get_name.return_value in burger.get_receipt()
+        assert ingredient_mock.get_name.return_value == BurgerData.ingredient_name
 
 
