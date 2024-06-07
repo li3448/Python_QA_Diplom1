@@ -1,4 +1,4 @@
-from data import DataBun
+from helper import DataBun
 from praktikum.bun import Bun
 
 

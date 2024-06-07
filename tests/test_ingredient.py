@@ -1,4 +1,4 @@
-from data import DataIngredient
+from helper import DataIngredient
 from praktikum.ingredient import Ingredient
 
 

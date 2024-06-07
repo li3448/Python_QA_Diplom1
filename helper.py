@@ -1,3 +1,5 @@
+import random
+
 class BurgerHelper:
     @staticmethod
     def add_a_few_ingredients(burger, mocks_ingredients, slise: list):
@@ -25,4 +27,24 @@ class BurgerHelper:
             burger.add_ingredient(ingredient)
             part_receipt += f"= {ingredient.get_type()} {ingredient.get_name()} =\n"
         return part_receipt, price_ingredients
+
+
+
+class DataBun:
+    name = ['Флюоресцентная', 'Краторная']
+    price = [988, 1255]
+
+    @classmethod
+    def get_data_bun(cls):
+        return random.choice(cls.name), random.choice(cls.price)
+
+
+class DataIngredient:
+    name = ['Spicy-X', 'Space Sauce']
+    price = [90, 80]
+    type = ['sauce', 'filling']
+
+    @classmethod
+    def get_data_ingredient(cls):
+        return random.choice(cls.name), random.choice(cls.price), random.choice(cls.type)
 
