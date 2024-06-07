@@ -1,10 +1,9 @@
 import pytest
-from bun import Bun
+from practikum.bun import Bun
 from data import BunData, IngrData
-from ingredient import Ingredient
-from burger import Burger
-from database import Database
-import ingredient_types
+from practikum.ingredient import Ingredient
+from practikum import ingredient_types
+
 
 @pytest.fixture()
 def set_data_bun():
@@ -12,16 +11,9 @@ def set_data_bun():
 
     return bun
 
+
 @pytest.fixture()
 def set_data_ingr():
     ingredient = Ingredient(ingredient_types.INGREDIENT_TYPE_FILLING, IngrData.ingr_name, IngrData.ingr_price)
 
     return ingredient
-
-@pytest.fixture()
-def file_o_fish():
-    return Burger()
-
-@pytest.fixture()
-def database():
-    return Database()
