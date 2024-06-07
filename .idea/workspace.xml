@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ef1f82b-7130-42c2-9c8a-0d2bff1cc3b9" name="Changes" comment="Diplom_1" />
+    <list default="true" id="2ef1f82b-7130-42c2-9c8a-0d2bff1cc3b9" name="Changes" comment="test" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,7 +58,7 @@
     &quot;Python tests.Python tests in test_bun.py.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests in tests.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop1&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Rebasing develop1&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/user/PycharmProjects/Diplom_1&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;
   }
@@ -203,11 +203,20 @@
       <option name="project" value="LOCAL" />
       <updated>1717709590124</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="test">
+      <option name="closed" value="true" />
+      <created>1717710190861</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1717710190861</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Diplom_1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Diplom_1" />
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
 </project>
