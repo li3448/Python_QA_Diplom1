@@ -1,4 +1,4 @@
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 from ..praktikum.burger import Burger
 from ..praktikum.bun import Bun
 from ..praktikum.ingredient import Ingredient
@@ -51,7 +51,24 @@ class TestBurger:
         burger.add_ingredient(mock_ingredient.ingredients_2)
         burger.add_ingredient(mock_ingredient.ingredients_1)
         burger.move_ingredient(0, 1)
-
         assert burger.ingredients.index(mock_ingredient.ingredients_1) == 0
+
+    @patch('Bun.get_name', return_value=Helpers.MOCK_BUN_NAME)
+    @patch('Ingredient.get_name', return_value=Helpers.MOCK_INGREDIENT_NAME)
+    @patch('Ingredient.get_type', return_value=Helpers.MOCK_INGREDIENT_TYPE)
+    def test_get_receipt_burger(self, mock_bun_get_name, mock_ingredient_get_name, mock_ingredient_get_type):  #Проверка счета за бургер
+        mock_bun = Mock()
+        mock_bun.bun = Bun(Helpers.BUN_NAME, Helpers.BUN_PRICE)
+        mock_ingredient = Mock()
+        mock_ingredient.ingredients = Ingredient(Helpers.INGREDIENT_TYPE, Helpers.INGREDIENT_NAME, Helpers.INGREDIENT_PRICE)
+        burger = Burger()
+        burger.set_buns(mock_bun.bun)
+        burger.add_ingredient(mock_ingredient.ingredients)
+        receipt = burger.get_receipt()
+
+        assert type(receipt) is str
+        assert len(receipt) > 0
+        assert 'Price: 2060' and '(==== Флюоресцентная тестовая булка R2-D3 ====)' in receipt
+
 
 
