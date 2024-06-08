@@ -13,7 +13,6 @@ class TestDatabase:
     def test_available_buns_list_has_correct_bun(self, bun_name, price, index):
         database = Database()
         buns_list = database.available_buns()
-
         assert (
                 buns_list[index].get_name() == bun_name and
                 buns_list[index].get_price() == price
@@ -30,7 +29,6 @@ class TestDatabase:
     def test_available_ingredients_list_has_correct_ingredient(self, ingredient_type, ingredient_name, price, index):
         database = Database()
         ingredients_list = database.available_ingredients()
-
         assert (
                 ingredients_list[index].get_type() == ingredient_type and
                 ingredients_list[index].get_name() == ingredient_name and
