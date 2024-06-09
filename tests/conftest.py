@@ -43,6 +43,7 @@ def mock_database_available_buns():
     ]
     return mock_db
 
+
 @pytest.fixture(scope='function')
 def mock_database_available_ingredients():
     mock_db = Mock(spec=Database)
@@ -53,5 +54,3 @@ def mock_database_available_ingredients():
         Mock(name='Луковая булка', price=90),
     ]
     return mock_db
-
-
