@@ -26,10 +26,3 @@ class RemoveIngredientData:
     price = 200
     name = 'Колбаса'
     type = 'начинка'
-
-# class Data:
-#     MOCK_BUN_NAME = "Сырная"
-#     MOCK_BUN_PRICE = 100
-#     MOCK_INGREDIENT_NAME = "Чесночный"
-#     MOCK_INGREDIENT_TYPE = "соус"
-#     MOCK_INGREDIENT_PRICE = 50
