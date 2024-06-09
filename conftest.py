@@ -2,6 +2,7 @@ from unittest.mock import Mock
 import pytest
 from data import BunData, IngredientData, RemoveIngredientData
 from praktikum.burger import Burger
+from praktikum.database import Database
 
 @pytest.fixture(scope='function')
 def cosmo_burger():
@@ -29,3 +30,7 @@ def ingredient_mock_remove():
     ingredient.get_name.return_value = RemoveIngredientData.name
     ingredient.get_type.return_value = RemoveIngredientData.type
     return ingredient
+
+@pytest.fixture(scope='function')
+def data_base_mock():
+    return Database()
