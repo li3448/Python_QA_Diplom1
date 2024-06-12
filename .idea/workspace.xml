@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ef1f82b-7130-42c2-9c8a-0d2bff1cc3b9" name="Changes" comment="Diplom_1">
-      <change afterPath="$PROJECT_DIR$/tests/test_ingredient.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Diplom_1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Diplom_1.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_burger.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_burger.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_database.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_database.py" afterDir="false" />
-    </list>
+    <list default="true" id="2ef1f82b-7130-42c2-9c8a-0d2bff1cc3b9" name="Changes" comment="Diplom_1" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -81,6 +72,7 @@
     "Python tests.Python tests for test_database.TestDatabase.test_available_ingredients.executor": "Run",
     "Python tests.Python tests in test_bun.py.executor": "Run",
     "Python tests.Python tests in tests.executor": "Run",
+    "Python tests.pytest for test_burger.TestBurger.test_add_ingredient.executor": "Run",
     "Python tests.pytest for test_burger.TestBurger.test_get_receipt.executor": "Run",
     "Python tests.pytest for test_burger.TestBurger.test_get_receipt_return_correct.executor": "Run",
     "Python tests.pytest for test_burger.TestBurger.test_get_receipt_with_ingredient_name.executor": "Run",
@@ -301,7 +293,23 @@
       <option name="project" value="LOCAL" />
       <updated>1717912570754</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Diplom_1">
+      <option name="closed" value="true" />
+      <created>1718168678918</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1718168678918</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Diplom_1">
+      <option name="closed" value="true" />
+      <created>1718168700375</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1718168700375</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
