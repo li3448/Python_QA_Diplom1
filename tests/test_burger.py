@@ -1,5 +1,4 @@
 import pytest
-
 from praktikum.burger import Burger
 from tests.data import MockBun, MockIngredient, MockIngredient2
 
@@ -64,7 +63,10 @@ class TestBurger:
         burger.set_buns(mok_bun)
         burger.add_ingredient(mok_ingredient)
         burger.add_ingredient(mok_ingredient_2)
-
-        receipt = burger.get_receipt()
-        assert 'Price: 900' in receipt
-
+        receipt = ('(==== Крафтовая булка ====)\n'
+                   '= начинка Говяжий метеорит =\n'
+                   '= соус Говяжий  =\n'
+                   '(==== Крафтовая булка ====)\n'
+                   '\n'
+                   'Price: 900')
+        assert burger.get_receipt() == receipt

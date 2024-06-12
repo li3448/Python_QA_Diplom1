@@ -32,25 +32,6 @@ def mok_ingredient_2():
 
 
 @pytest.fixture(scope='function')
-def mock_database_available_buns():
-    mock_db = Mock(spec=Database)
-    mock_db.available_buns.return_value = [
-        Mock(name='Крафтовая булка', price=100),
-        Mock(name='Классическая булка', price=50),
-        Mock(name='Цельнозерновая булка', price=75),
-        Mock(name='Луковая булка', price=90),
-        Mock(name='Чесночная булка', price=120),
-    ]
-    return mock_db
-
-
-@pytest.fixture(scope='function')
-def mock_database_available_ingredients():
-    mock_db = Mock(spec=Database)
-    mock_db.available_buns.return_value = [
-        Mock(name='Крафтовая булка', price=100),
-        Mock(name='Классическая булка', price=50),
-        Mock(name='Цельнозерновая булка', price=75),
-        Mock(name='Луковая булка', price=90),
-    ]
-    return mock_db
+def database():
+    database = Database()
+    return database
