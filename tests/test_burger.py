@@ -1,19 +1,49 @@
 from data import Data
+from praktikum.burger import Burger
 
 
 # Проверки класса Burger с мокирование Bun и Ingredient
 class TestBurger:
-    def test_get_price_burger_return_return_sum(self, burger_instance, mock_bun_get_price, mock_ingredient_get_price):
-        burger_instance.set_buns(mock_bun_get_price)
-        burger_instance.add_ingredient(mock_ingredient_get_price)
+    def test_set_buns_bun_is_correct_value(self, mock_bun):
+        burger = Burger()
+        burger.set_buns(mock_bun)
 
-        result_mock = mock_bun_get_price.get_price() * 2 + mock_ingredient_get_price.get_price()
+        assert burger.bun == mock_bun
 
-        assert burger_instance.get_price() == result_mock
+    def test_add_ingredient_ingredient_value_correct(self, mock_ingredient):
+        burger = Burger()
+        burger.add_ingredient(mock_ingredient)
 
-    def test_get_receipt_burger_return_string(self, burger_instance, mock_bun_get_price, mock_bun_get_name,
-                                              mock_ingredient_get_price, mock_ingredient_get_name_and_get_type):
-        burger_instance.set_buns(mock_bun_get_price)
-        burger_instance.add_ingredient(mock_ingredient_get_price)
+        assert burger.ingredients[0] == mock_ingredient
 
-        assert burger_instance.get_receipt() == Data.RESULT_GET_RECEIPT_FROM_MOCK
+    def test_get_price_burger_return_return_sum(self, mock_bun, mock_ingredient):
+        burger = Burger()
+        burger.set_buns(mock_bun)
+        burger.add_ingredient(mock_ingredient)
+
+        result_mock = mock_bun.get_price() * 2 + mock_ingredient.get_price()
+
+        assert burger.get_price() == result_mock
+
+    def test_get_receipt_burger_return_string(self, mock_bun, mock_ingredient):
+        burger = Burger()
+        burger.set_buns(mock_bun)
+        burger.add_ingredient(mock_ingredient)
+
+        assert burger.get_receipt() == Data.RESULT_GET_RECEIPT_FROM_MOCK
+
+    def test_remove_ingredient_len_list_ingredient_is_zero(self, mock_ingredient):
+        burger = Burger()
+        burger.add_ingredient(mock_ingredient)
+        burger.remove_ingredient(0)
+
+        assert len(burger.ingredients) == 0
+
+    def test_move_ingredient_switch_burger_index(self, mock_ingredient, mock_ingredient_second_from_move_test):
+        burger = Burger()
+        second_burger = mock_ingredient_second_from_move_test
+        burger.add_ingredient(mock_ingredient)
+        burger.add_ingredient(second_burger)
+        burger.move_ingredient(1, 0)
+
+        assert burger.ingredients[0] == second_burger

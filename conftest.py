@@ -1,63 +1,32 @@
-from unittest.mock import Mock
-from praktikum.bun import Bun
-from praktikum.database import Database
-from praktikum.ingredient import Ingredient
-from praktikum.burger import Burger
-from data import Data
-
 import pytest
+from unittest.mock import Mock
+from data import Data
 
 
 @pytest.fixture(scope='function')
-def mock_bun_get_price():
+def mock_bun():
     mock_bun = Mock()
     mock_bun.get_price.return_value = Data.BUN_PRICE
+    mock_bun.get_name.return_value = Data.BUN_NAME
 
     return mock_bun
 
 
 @pytest.fixture(scope='function')
-def mock_bun_get_name(mock_bun_get_price):
-    mock_bun_get_price.get_name.return_value = Data.BUN_NAME
-
-
-@pytest.fixture(scope='function')
-def mock_ingredient_get_price():
+def mock_ingredient():
     mock_ingredient = Mock()
     mock_ingredient.get_price.return_value = Data.INGREDIENT_PRICE
+    mock_ingredient.get_name.return_value = Data.INGREDIENT_NAME
+    mock_ingredient.get_type.return_value = Data.INGREDIENTS_TYPE
 
     return mock_ingredient
 
 
 @pytest.fixture(scope='function')
-def mock_ingredient_get_name_and_get_type(mock_ingredient_get_price):
-    mock_ingredient_get_price.get_name.return_value = Data.INGREDIENT_NAME
-    mock_ingredient_get_price.get_type.return_value = Data.INGREDIENTS_TYPE
+def mock_ingredient_second_from_move_test():
+    mock_second_ingredient = Mock()
+    mock_second_ingredient.get_price.return_value = Data.SECOND_INGREDIENT_PRICE
+    mock_second_ingredient.get_name.return_value = Data.SECOND_INGREDIENT_NAME
+    mock_second_ingredient.get_type.return_value = Data.SECOND_INGREDIENTS_TYPE
 
-
-@pytest.fixture(scope='function')
-def bun_instance():
-    bun = Bun(name=Data.BUN_NAME, price=Data.BUN_PRICE)
-
-    return bun
-
-
-@pytest.fixture(scope='function')
-def ingredient_instance():
-    ingredient = Ingredient(name=Data.BUN_NAME, price=Data.BUN_PRICE, ingredient_type=Data.INGREDIENTS_TYPE)
-
-    return ingredient
-
-
-@pytest.fixture(scope='function')
-def burger_instance():
-    burger = Burger()
-
-    return burger
-
-
-@pytest.fixture(scope='function')
-def database_instance():
-    database = Database()
-
-    return database
+    return mock_second_ingredient
