@@ -2,11 +2,8 @@ import pytest
 from unittest.mock import patch
 from praktikum.burger import Burger
 from praktikum.ingredient_types import INGREDIENT_TYPE_SAUCE
-
 from generators_data import generate_random_bun_name, generate_random_bun_price
-from generators_data import generate_random_ingredient_name, generate_random_ingredient_price
 from praktikum.bun import Bun
-
 
 @pytest.fixture
 def mock_add_ingredients():
@@ -42,23 +39,8 @@ def mock_burger(mock_ingredient):
         new_burger.add_ingredient(mock_ingredient)
         yield new_burger
 
-
 @pytest.fixture(scope='function')
-def bun_name():
-    return generate_random_bun_name()
-
-@pytest.fixture(scope='function')
-def bun_price():
-    return generate_random_bun_price()
-
-@pytest.fixture(scope='function')
-def bun(bun_name, bun_price):
-    return Bun(bun_name, bun_price)
-
-@pytest.fixture(scope='function')
-def ingredient_name():
-    return generate_random_ingredient_name()
-
-@pytest.fixture(scope='function')
-def ingredient_price():
-    return generate_random_ingredient_price()
+def bun():
+    name = generate_random_bun_name()
+    price = generate_random_bun_price()
+    return Bun(name, price)

@@ -1,7 +1,7 @@
 import pytest
 from praktikum import ingredient_types
 from praktikum.ingredient import Ingredient
-
+from generators_data import generate_random_ingredient_name, generate_random_ingredient_price
 
 class TestIngredient:
     @pytest.mark.parametrize(
@@ -11,7 +11,10 @@ class TestIngredient:
             ingredient_types.INGREDIENT_TYPE_FILLING
         ]
     )
-    def test_ingredient_returns_correct_price(self, ingredient_type, ingredient_name, ingredient_price):
+    def test_ingredient_returns_correct_price(self, ingredient_type):
+        ingredient_name = generate_random_ingredient_name()
+        ingredient_price = generate_random_ingredient_price()
+        
         ingredient = Ingredient(ingredient_type, ingredient_name, ingredient_price)
         assert ingredient.get_price() == ingredient_price
 
@@ -22,7 +25,10 @@ class TestIngredient:
             ingredient_types.INGREDIENT_TYPE_FILLING
         ]
     )
-    def test_ingredient_returns_correct_name(self, ingredient_type, ingredient_name, ingredient_price):
+    def test_ingredient_returns_correct_name(self, ingredient_type):
+        ingredient_name = generate_random_ingredient_name()
+        ingredient_price = generate_random_ingredient_price()
+        
         ingredient = Ingredient(ingredient_type, ingredient_name, ingredient_price)
         assert ingredient.get_name() == ingredient_name
 
@@ -33,6 +39,9 @@ class TestIngredient:
             ingredient_types.INGREDIENT_TYPE_FILLING
         ]
     )
-    def test_ingredient_returns_correct_type(self, ingredient_type, ingredient_name, ingredient_price):
+    def test_ingredient_returns_correct_type(self, ingredient_type):
+        ingredient_name = generate_random_ingredient_name()
+        ingredient_price = generate_random_ingredient_price()
+        
         ingredient = Ingredient(ingredient_type, ingredient_name, ingredient_price)
         assert ingredient.get_type() == ingredient_type

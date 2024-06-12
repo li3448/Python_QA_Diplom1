@@ -1,7 +1,6 @@
 from praktikum.burger import Burger
-from generators_data import *
+from generators_data import generate_random_bun_name, generate_random_bun_price, generate_random_ingredient_name, generate_random_ingredient_price
 from praktikum.ingredient_types import INGREDIENT_TYPE_SAUCE
-
 
 class TestBurger:
     def test_set_buns_correctly(self, mock_bun):
@@ -31,6 +30,9 @@ class TestBurger:
         assert mock_add_ingredients.ingredients[1] == ingredient
 
     def test_calculate_price_correctly(self, mock_bun, mock_ingredient):
+        bun_price = generate_random_bun_price()
+        ingredient_price = generate_random_ingredient_price()
+        
         burger = Burger()
         burger.add_ingredient(mock_ingredient)
         burger.set_buns(mock_bun)
@@ -40,7 +42,10 @@ class TestBurger:
 
         assert burger.get_price() == bun_price * 2 + ingredient_price
 
-    def test_get_receipt_with_bun_name(self, mock_bun, mock_ingredient):
+    def test_get_receipt_with_bun_name(self, mock_bun):
+        bun_name = generate_random_bun_name()
+        bun_price = generate_random_bun_price()
+        
         burger = Burger()
         burger.set_buns(mock_bun)
 
@@ -50,6 +55,11 @@ class TestBurger:
         assert bun_name in burger.get_receipt()
 
     def test_get_receipt_with_ingredient_name(self, mock_bun, mock_ingredient):
+        bun_name = generate_random_bun_name()
+        bun_price = generate_random_bun_price()
+        ingredient_name = generate_random_ingredient_name()
+        ingredient_price = generate_random_ingredient_price()
+        
         burger = Burger()
         burger.add_ingredient(mock_ingredient)
         burger.set_buns(mock_bun)
