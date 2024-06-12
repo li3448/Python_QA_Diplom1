@@ -1,15 +1,7 @@
 import pytest
 from praktikum import ingredient_types
 from praktikum.ingredient import Ingredient
-from generators_data import generate_random_ingredient_name, generate_random_ingredient_price
 
-@pytest.fixture(scope='function')
-def ingredient_name():
-    return generate_random_ingredient_name()
-
-@pytest.fixture(scope='function')
-def ingredient_price():
-    return generate_random_ingredient_price()
 
 class TestIngredient:
     @pytest.mark.parametrize(

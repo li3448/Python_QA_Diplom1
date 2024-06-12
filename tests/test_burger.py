@@ -1,20 +1,7 @@
-import pytest
 from praktikum.burger import Burger
 from generators_data import *
 from praktikum.ingredient_types import INGREDIENT_TYPE_SAUCE
 
-
-@pytest.fixture
-def mock_add_ingredients():
-    class MockAddIngredients:
-        def __init__(self):
-            self.ingredients = ['meat', 'bun', 'sauce']
-        
-        def move_ingredient(self, old_index, new_index):
-            ingredient = self.ingredients.pop(old_index)
-            self.ingredients.insert(new_index, ingredient)
-    
-    return MockAddIngredients()
 
 class TestBurger:
     def test_set_buns_correctly(self, mock_bun):
