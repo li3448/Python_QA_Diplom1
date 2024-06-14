@@ -1,5 +1,5 @@
-from Diplom_1.praktikum.burger import Burger
-from Diplom_1.tests.conftest import DatabaseMock
+from praktikum.burger import Burger
+from praktikum.helper import DatabaseMock
 
 
 class TestBurger:
