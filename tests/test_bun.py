@@ -1,8 +1,18 @@
-class TestBun:
-    def test_bun_returns_correct_name(self, bun):
-        bun_name = bun.get_name()
-        assert bun.get_name() == bun_name
+import generators_data
+from praktikum.bun import Bun
 
-    def test_bun_returns_correct_price(self, bun):
-        bun_price = bun.get_price()
-        assert bun.get_price() == bun_price
+class TestBun:
+
+    def test_get_name(self):
+        name = generators_data.generate_random_bun_name()
+        price = generators_data.generate_random_bun_price()
+        bun = Bun(name, price)
+
+        assert bun.get_name() == name
+
+    def test_get_price(self):
+        name = generators_data.generate_random_bun_name()
+        price = generators_data.generate_random_bun_price()
+        bun = Bun(name, price)
+
+        assert bun.get_price() == price
