@@ -35,13 +35,15 @@ class TestBurger:
         assert file_o_fish.ingredients == []
 
     def test_move_ingredient(self):
-        mock_ingredient = Mock()
+        mock_ingredient_1 = Mock()
+        mock_ingredient_2 = Mock()
+        mock_ingredient_3 = Mock()
         file_o_fish = Burger()
-        file_o_fish.add_ingredient(mock_ingredient)
-        file_o_fish.add_ingredient(mock_ingredient)
-        file_o_fish.add_ingredient(mock_ingredient)
-        file_o_fish.move_ingredient(0, 1)
-        assert len(file_o_fish.ingredients) == 3
+        file_o_fish.add_ingredient(mock_ingredient_1)
+        file_o_fish.add_ingredient(mock_ingredient_2)
+        file_o_fish.add_ingredient(mock_ingredient_3)
+        file_o_fish.move_ingredient(0, 2)
+        assert file_o_fish.ingredients == [mock_ingredient_2, mock_ingredient_3, mock_ingredient_1]
 
     def test_get_receipt(self):
         file_o_fish = Burger()
