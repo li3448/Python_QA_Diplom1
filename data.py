@@ -3,3 +3,4 @@ class TestData:
     bun_price = 1000
     ingredient_price = 100
     ingredient_name = 'горчица'
+    ingredient_name_1 = 'cалат'
