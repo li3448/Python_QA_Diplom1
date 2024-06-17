@@ -21,4 +21,23 @@
 
 **Запуск автотестов и создание HTML-отчета о покрытии**
 
->  `$ pytest --cov=praktikum --cov-report=html`
+1. Клонировать репозиторий с проектом
+
+2. Перейти в корень проекта
+
+3. Настроить виртуальную среду (virtual environment):
+   >  `$ python -m venv .venv
+
+4. Запустить virtual environment:
+   - Windows
+   >  `$ .venv\Scripts\activate
+   - MacOS/Linux:
+   >  `$ source .venv/bin/activate
+
+5. Установить зависимости:
+   >  `$ pip install -r requirements.txt
+
+6. Запуск тестов:
+   >  `$ python -m pytest
+   >  `$ python -m pytest --cov=praktikum --cov-report=html`
+   > 
