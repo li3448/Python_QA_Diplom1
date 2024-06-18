@@ -1,5 +1,6 @@
 import pytest
-from bun import Bun
+from praktikum.praktikum import Bun
+from praktikum.burger import Burger
 
 
 @pytest.fixture(params=[
@@ -9,3 +10,8 @@ from bun import Bun
 def bun(request):
     name, price = request.param
     return Bun(name, price)
+
+
+@pytest.fixture
+def test_burger():
+    return Burger()
