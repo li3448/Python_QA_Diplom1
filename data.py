@@ -1,4 +1,4 @@
-# данные для test_burger
+# данные для тестов
 class TestData:
     bun_price = 100.5
     ingredient_price = 50

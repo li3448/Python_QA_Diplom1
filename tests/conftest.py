@@ -1,6 +1,8 @@
 import pytest
 from praktikum.praktikum import Bun
-from praktikum.burger import Burger
+from praktikum.ingredient import Ingredient
+from data import TestData
+from praktikum.database import Database
 
 
 @pytest.fixture(params=[
@@ -13,5 +15,10 @@ def bun(request):
 
 
 @pytest.fixture
-def test_burger():
-    return Burger()
+def ingredient():
+    return Ingredient(TestData.ingredient_type, TestData.ingredient_name, TestData.ingredient_price)
+
+
+@pytest.fixture
+def database():
+    return Database()
