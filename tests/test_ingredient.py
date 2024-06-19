@@ -1,7 +1,6 @@
 from ingredient import Ingredient
 from ingredient_types import INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FILLING
 from data import Data
-import pytest
 import allure
 
 
@@ -25,10 +24,16 @@ class TestIngredient:
 
         assert ingredient.get_name() == Data.INGREDIENT_NAME
 
-    @allure.title('Получение типа ингредиента через метод get_type')
-    @pytest.mark.parametrize("ingredient_type", [INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FILLING])
-    def test_get_type_success(self, ingredient_type):
-        ingredient = Ingredient(ingredient_type, Data.INGREDIENT_NAME, Data.INGREDIENT_PRICE)
-        result_type = 'SAUCE' if ingredient_type == INGREDIENT_TYPE_SAUCE else 'FILLING'
+    @allure.title('Получение типа соуса через метод get_type')
+    def test_get_sauce_type_success(self):
+        ingredient = Ingredient(INGREDIENT_TYPE_SAUCE, Data.INGREDIENT_NAME, Data.INGREDIENT_PRICE)
+        result_type = 'SAUCE'
+
+        assert ingredient.get_type() == result_type
+
+    @allure.title('Получение типа начинки через метод get_type')
+    def test_get_filling_type_success(self):
+        ingredient = Ingredient(INGREDIENT_TYPE_FILLING, Data.INGREDIENT_NAME, Data.INGREDIENT_PRICE)
+        result_type = 'FILLING'
 
         assert ingredient.get_type() == result_type

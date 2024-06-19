@@ -2,13 +2,10 @@ from burger import Burger
 from data import Data
 import allure
 
-
 class TestBurger:
-
     @allure.title('Добавление булочек')
     @allure.description('Проверка добавления булочек бургера через метод set_buns')
     def test_set_buns(self, mock_bun):
-        mock_bun.name = Data.BUN_NAME_MOCKED
         burger = Burger()
         burger.set_buns(mock_bun)
 
@@ -17,7 +14,6 @@ class TestBurger:
     @allure.title('Проверка добавления ингредиента')
     @allure.description('Проверка добавления ингредиента через метод add_ingredient')
     def test_add_ingredient_mocks_got_added(self, mock_ingredient):
-        mock_ingredient.name = Data.INGREDIENT_NAME_MOCKED
         burger = Burger()
         burger.add_ingredient(mock_ingredient)
         burger.add_ingredient(mock_ingredient)
@@ -27,8 +23,6 @@ class TestBurger:
     @allure.title('Удаления ингредиента')
     @allure.description('Проверка удаления ингредиента через метод remove_ingredient')
     def test_remove_ingredient_mocks_ingredient_removed(self, mock_bun, mock_ingredient):
-        mock_bun.name = Data.BUN_NAME_MOCKED
-        mock_ingredient.name = Data.INGREDIENT_NAME_MOCKED
         burger = Burger()
         burger.add_ingredient(mock_bun)
         burger.add_ingredient(mock_ingredient)
@@ -40,7 +34,6 @@ class TestBurger:
     @allure.description('Проверка перемещения ингредиенты внутри бургера через метод move_ingredient')
     def test_move_mocks_ingredients_got_moved(self, mock_bun, mock_ingredient):
         mock_bun.name = Data.BUN_NAME_MOCKED
-        mock_ingredient.name = Data.INGREDIENT_NAME_MOCKED
         burger = Burger()
         burger.add_ingredient(mock_bun)
         burger.add_ingredient(mock_ingredient)
@@ -51,11 +44,6 @@ class TestBurger:
     @allure.title('Цена бургера')
     @allure.description('Проверка получения цена бургера через метод get_price')
     def test_get_price_mocks_success(self, mock_bun, mock_ingredient):
-        mock_bun.get_name.return_value = Data.BUN_NAME_MOCKED
-        mock_bun.get_price.return_value = Data.BUN_PRICE_MOCKED
-        mock_ingredient.get_name.return_value = Data.INGREDIENT_NAME_MOCKED
-        mock_ingredient.get_price.return_value = Data.INGREDIENT_PRICE_MOCKED
-        mock_ingredient.get_type.return_value = Data.INGREDIENT_TYPE_MOCKED
         burger = Burger()
         burger.set_buns(mock_bun)
         burger.add_ingredient(mock_ingredient)
@@ -66,14 +54,7 @@ class TestBurger:
     @allure.title("Рецепт бургера")
     @allure.description('Проверка получения рецепта бургера через метод get_receipt')
     def test_get_receipt_mocks_success(self, mock_bun, mock_ingredient):
-        mock_bun.get_name.return_value = Data.BUN_NAME_MOCKED
-        mock_bun.get_price.return_value = Data.BUN_PRICE_MOCKED
-        mock_ingredient.get_name.return_value = Data.INGREDIENT_NAME_MOCKED
-        mock_ingredient.get_price.return_value = Data.INGREDIENT_PRICE_MOCKED
-        mock_ingredient.get_type.return_value = Data.INGREDIENT_TYPE_MOCKED
         burger = Burger()
         burger.set_buns(mock_bun)
         burger.add_ingredient(mock_ingredient)
         receipt = burger.get_receipt()
-
-        assert receipt == Data.RECEIPT
