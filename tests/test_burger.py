@@ -33,4 +33,20 @@ class TestBurger:
         burger.add_ingredient(ingredient)
         burger.add_ingredient(ingredient_1)
         result = burger.get_receipt()
-        assert 'Price:' in result
+        receipt = [
+            '(==== Краторная булка N-200i ====)',
+            '= sauce dinosaur =',
+            '= filling sausage =',
+            '(==== Краторная булка N-200i ====)\n',
+            'Price: 3010'
+        ]
+        assert '\n'.join(receipt) == result
+
+    def test_move_ingredient_success_move(self, burger, bun, ingredient, ingredient_1):
+        burger.set_buns(bun)
+        burger.add_ingredient(ingredient)
+        burger.add_ingredient(ingredient_1)
+
+        burger.move_ingredient(1, 0)
+
+        assert burger.ingredients[0] == ingredient_1 and burger.ingredients[1] == ingredient

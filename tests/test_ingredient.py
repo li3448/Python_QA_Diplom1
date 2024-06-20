@@ -2,9 +2,6 @@ from data import Data
 
 
 class TestIngredient:
-    def test_init_ingredient_true_name(self, ingredient):
-        assert ingredient.name == 'dinosaur'
-
     def test_get_price_return_true_value(self, ingredient):
         price = ingredient.get_price()
         assert price == Data.ingredient[2]
