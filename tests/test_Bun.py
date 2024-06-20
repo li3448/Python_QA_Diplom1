@@ -1,12 +1,14 @@
+import pytest
 from bun import Bun
-# import pytest
 
 
 class TestBun:
-    def test_get_name(self):
-        bun = Bun('HAMBERGER', 100.50)
-        assert bun.get_name() == 'HAMBERGER'
+    @pytest.mark.parametrize('name_bun', ['abcde', '1abcd', '123$#', '     ', '123 4'])
+    def test_get_name(self, name_bun):
+        bun = Bun(name_bun, 100.50)
+        assert bun.get_name() == name_bun
 
-    def test_get_price(self):
-        bun = Bun('HAMBERGER', 100.50)
-        assert bun.get_price() == 100.50
+    @pytest.mark.parametrize('price', ['abcde', '1abcd', '123$#', '     ', '1234'])
+    def test_get_price(self, price):
+        bun = Bun('HAMBERGER', price)
+        assert bun.get_price() == price

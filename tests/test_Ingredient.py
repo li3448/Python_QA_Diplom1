@@ -1,18 +1,21 @@
+import pytest
 from ingredient import Ingredient
-from ingredient_types import INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FILLING
+from ingredient_types import INGREDIENT_TYPE_SAUCE
 
 
-class TestIngridient:
-    def test_get_price(self):
-        ingredient = Ingredient(INGREDIENT_TYPE_SAUCE,'Potato',500)
-        assert ingredient.get_price() == 500
+class TestIngredient:
 
+    @pytest.mark.parametrize('price', [' ', '1', '1.1', '     ', '123 4', 'ADV'])
+    def test_get_price(self, price):
+        ingredient = Ingredient(INGREDIENT_TYPE_SAUCE, 'Potato', price)
+        assert ingredient.get_price() == price
 
+    @pytest.mark.parametrize('name', [' ', 'Bulka', 'Булка', 'QwerБу', 'Булка и вилка', 'ADV'])
+    def test_get_name(self, name):
+        ingredient = Ingredient(INGREDIENT_TYPE_SAUCE, name, 500)
+        assert ingredient.get_name() == name
 
-    def test_get_name(self):
-        ingredient = Ingredient(INGREDIENT_TYPE_SAUCE,'Potato',500)
-        assert ingredient.get_name() == 'Potato'
-
-    def test_get_type(self):
-        ingredient = Ingredient(INGREDIENT_TYPE_SAUCE,'Potato',500)
-        assert ingredient.get_type() == INGREDIENT_TYPE_SAUCE
+    @pytest.mark.parametrize('nachinka_or_souse', [' ', 'Майонез', 'Ketchup', 'Beef1', 'CheНасес', '!2 ВS'])
+    def test_get_type(self, nachinka_or_souse):
+        ingredient = Ingredient(nachinka_or_souse, 'Potato', 500)
+        assert ingredient.get_type() == nachinka_or_souse
