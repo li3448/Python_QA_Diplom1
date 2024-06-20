@@ -1,5 +1,5 @@
 import pytest
-from praktikum.praktikum import Bun
+from praktikum.bun import Bun
 from praktikum.ingredient import Ingredient
 from data import TestData
 from praktikum.database import Database
