@@ -7,55 +7,55 @@ class TestBurger:
 
     def test_set_buns(self):
         mock_bun = Mock()
-        file_o_fish = Burger()
-        file_o_fish.set_buns(mock_bun)
-        assert file_o_fish.bun == mock_bun
+        burger = Burger()
+        burger.set_buns(mock_bun)
+        assert burger.bun == mock_bun
 
     def test_get_price(self):
         mock_bun = Mock()
-        file_o_fish = Burger()
-        mock_bun.get_price.return_value = 1000
+        burger = Burger()
+        mock_bun.get_price.return_value = 100
         mock_ingredient = Mock()
-        mock_ingredient.get_price.return_value = 600
-        file_o_fish.bun = mock_bun
-        file_o_fish.ingredients = [mock_ingredient]
-        assert file_o_fish.get_price() == 1000*2+600
+        mock_ingredient.get_price.return_value = 300
+        burger.bun = mock_bun
+        burger.ingredients = [mock_ingredient]
+        assert burger.get_price() == 500
 
     def test_add_ingredient(self):
         mock_ingredient = Mock()
-        file_o_fish = Burger()
-        file_o_fish.add_ingredient(mock_ingredient)
-        assert file_o_fish.ingredients == [mock_ingredient]
+        burger = Burger()
+        burger.add_ingredient(mock_ingredient)
+        assert mock_ingredient in burger.ingredients
 
     def test_remove_ingredient(self):
         mock_ingredient = Mock()
-        file_o_fish = Burger()
-        file_o_fish.add_ingredient(mock_ingredient)
-        file_o_fish.remove_ingredient(0)
-        assert file_o_fish.ingredients == []
+        burger = Burger()
+        burger.add_ingredient(mock_ingredient)
+        burger.remove_ingredient(0)
+        assert burger.ingredients == []
 
     def test_move_ingredient(self):
         mock_ingredient_1 = Mock()
         mock_ingredient_2 = Mock()
         mock_ingredient_3 = Mock()
-        file_o_fish = Burger()
-        file_o_fish.add_ingredient(mock_ingredient_1)
-        file_o_fish.add_ingredient(mock_ingredient_2)
-        file_o_fish.add_ingredient(mock_ingredient_3)
-        file_o_fish.move_ingredient(0, 2)
-        assert file_o_fish.ingredients == [mock_ingredient_2, mock_ingredient_3, mock_ingredient_1]
+        burger = Burger()
+        burger.add_ingredient(mock_ingredient_1)
+        burger.add_ingredient(mock_ingredient_2)
+        burger.add_ingredient(mock_ingredient_3)
+        burger.move_ingredient(0, 2)
+        assert burger.ingredients == [mock_ingredient_2, mock_ingredient_3, mock_ingredient_1]
 
     def test_get_receipt(self):
-        file_o_fish = Burger()
+        burger = Burger()
         mock_bun = Mock()
         mock_bun.get_name.return_value = BunData.bun_name
         mock_ingredient = Mock()
         mock_ingredient.get_type.return_value = IngredientData.ingredient_type
         mock_ingredient.get_name.return_value = IngredientData.ingredient_name
-        mock_bun.get_price.return_value = 988
-        mock_ingredient.get_price.return_value = 4142
-        file_o_fish.bun = mock_bun
-        file_o_fish.ingredients = [mock_ingredient]
+        mock_bun.get_price.return_value = 100
+        mock_ingredient.get_price.return_value = 300
+        burger.bun = mock_bun
+        burger.ingredients = [mock_ingredient]
         expected_receipt = Receipt.receipt_body
-        assert file_o_fish.get_receipt() == expected_receipt
+        assert burger.get_receipt() == expected_receipt
 
