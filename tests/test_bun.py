@@ -5,9 +5,6 @@ class TestBun:
     def test_name_of_bun_true(self, bun):
         assert bun.name == Data.bun_name and bun.price == Data.bun_price
 
-    # def test_price_of_bun_true(self, bun):
-    #     assert , 'Цена булки при создании записывается неверно'
-
     def test_get_name_return_correct_name(self, bun):
         result = bun.get_name()
         assert result == Data.bun_name
