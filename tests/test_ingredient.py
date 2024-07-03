@@ -11,9 +11,31 @@ class TestIngredient:
             ['FILLING', 'Мясо бессмертных моллюсков Protostomia', 250.6]
         ]
     )
-    def test_ingredient(self, ingredient_type, name, price):
+    def test_get_name(self, ingredient_type, name, price):
         ingredient = Ingredient(ingredient_type, name, price)
 
         assert ingredient.get_name() == name
+
+    @pytest.mark.parametrize(
+        'ingredient_type, name, price',
+        [
+            ['SAUCE', 'Соус традиционный галактический', 15.5],
+            ['FILLING', 'Мясо бессмертных моллюсков Protostomia', 250.6]
+        ]
+    )
+    def test_get_ingredient_type(self, ingredient_type, name, price):
+        ingredient = Ingredient(ingredient_type, name, price)
+
         assert ingredient.get_type() == ingredient_type
+
+    @pytest.mark.parametrize(
+        'ingredient_type, name, price',
+        [
+            ['SAUCE', 'Соус традиционный галактический', 15.5],
+            ['FILLING', 'Мясо бессмертных моллюсков Protostomia', 250.6]
+        ]
+    )
+    def test_get_price(self, ingredient_type, name, price):
+        ingredient = Ingredient(ingredient_type, name, price)
+
         assert ingredient.get_price() == price
