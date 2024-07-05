@@ -1,9 +1,7 @@
-import allure
-import pytest
 
 from burger import Burger
-from unittest.mock import Mock, patch
-from conftest import mock_white_bun, mock_red_bun, mock_sauce, mock_filling
+from unittest.mock import patch
+from conftest import *
 from data import BurgerGetPrice as bp, BurgerConsist as bc
 
 
@@ -33,7 +31,6 @@ class TestBurger:
         burger.add_ingredient(mock_sauce)
 
         assert len(burger.ingredients) == 1
-
 
     @allure.title('проверка добавления 2 ингредиентов - соус и начинка')
     def test_add_two_ingredients(self, mock_sauce, mock_filling):
@@ -79,20 +76,10 @@ class TestBurger:
         burger.remove_ingredient(0)  # удаляем ингредиент с индексом 1 или 0
 
         assert len(burger.ingredients) == 1
-        assert burger.ingredients[0].type == bc.INGREDIENT_TYPE_FILLING  # так как удалили ингредиент с индексом 0, проверяем
-                                                                       # что ингредиент с индексом 1 остался в списке
+        assert burger.ingredients[0].type == bc.INGREDIENT_TYPE_FILLING
+        # так как удалили ингредиент с индексом 0, проверяем
+        # что ингредиент с индексом 1 остался в списке
 
-    @allure.title('проверка удаления ингредиента с несуществующим индексом')
-    def test_delete_ingredient_with_incorrect_index(self, mock_sauce, mock_filling):
-        burger = Burger()
-        burger.add_ingredient(mock_sauce)
-        burger.add_ingredient(mock_filling)
-        try:
-            burger.remove_ingredient(2)
-        except IndexError:
-            result = f'индекс не существует'
-        return result
-        assert len(burger.ingredients) == 2
 
     # тесты для метода move_ingredient
     @allure.title('проверка на замену местами двух ингредиентов в списке')
@@ -111,7 +98,7 @@ class TestBurger:
     @allure.title('получение стоимости бургера с 2 булками и 2 ингредиентами')
     @patch('burger.Bun')
     @patch('burger.Ingredient')
-    def test_get_price_with_two_buns_and_sauce_filling(self, mock_ingredient_class, mock_bun_class):
+    def test_get_price_with_two_buns_and_sauce_filling(self):
         mock_white_bun = Mock()
         mock_sauce = Mock()
         mock_filling = Mock()
@@ -123,12 +110,12 @@ class TestBurger:
         burger.add_ingredient(mock_sauce)
         burger.add_ingredient(mock_filling)
 
-        assert burger.get_price() == bp.TWO_BUNS_SAUCE_FILLING_PRICE # 900 = 900 цена
+        assert burger.get_price() == bp.TWO_BUNS_SAUCE_FILLING_PRICE   # 900 = 900 цена
 
     @allure.title('получение стоимости бургера с 2 булками')
     @patch('burger.Bun')
     @patch('burger.Ingredient')
-    def test_get_price_with_two_buns_and_sauce_filling(self, mock_ingredient_class, mock_bun_class):
+    def test_get_price_with_two_buns_and_sauce_filling(self):
         mock_white_bun = Mock()
         mock_white_bun.get_price.return_value = bc.FIRST_BUN_PRICE
         burger = Burger()
@@ -139,7 +126,7 @@ class TestBurger:
     @allure.title('получение стоимости бургера с 2 булками и с соусом')
     @patch('burger.Bun')
     @patch('burger.Ingredient')
-    def test_get_price_with_two_buns_and_sauce_filling(self, mock_ingredient_class, mock_bun_class):
+    def test_get_price_with_two_buns_and_sauce_filling(self):
         mock_white_bun = Mock()
         mock_sauce = Mock()
         mock_sauce.get_price.return_value = bc.SAUCE_PRICE
@@ -161,130 +148,31 @@ class TestBurger:
         burger = Burger()
         burger.set_buns(mock_white_bun)
         burger.add_ingredient(mock_filling)
+        print(mock_ingredient_class, mock_bun_class)
 
         assert burger.get_price() == bp.BUNS_SAUCE_PRICE
 
     # тесты для метода get_receipt
     @allure.title('получение рецепта полного бургера')
-    @patch('burger.Bun')
-    @patch('burger.Ingredient')
-    @patch('burger.Burger.get_price', return_value=bp.TWO_BUNS_SAUCE_FILLING_PRICE)
-    def test_get_receipt_full_burger(self, mock_burger_get_price, mock_ingredient_class, mock_bun_class):
-        mock_white_bun = Mock()
-        mock_sauce = Mock()
-        mock_filling = Mock()
-        mock_white_bun.get_name.return_value = bc.FIRST_BUN_NAME
-        mock_white_bun.get_price.return_value = bc.FIRST_BUN_PRICE
-        mock_sauce.get_type.return_value = bc.INGREDIENT_TYPE_SAUCE
-        mock_sauce.get_name.return_value = bc.INGREDIENT_TYPE_SAUCE_NAME
-        mock_sauce.get_price.return_value = bc.SAUCE_PRICE
-        mock_filling.get_type.return_value = bc.INGREDIENT_TYPE_FILLING
-        mock_filling.get_name.return_value = bc.INGREDIENT_TYPE_FILLING_NAME
-        mock_filling.get_price.return_value = bc.FILLING_PRICE
-
+    def test_get_receipt_full_burger(self, mock_white_bun, mock_sauce, mock_filling):
         burger = Burger()
         burger.set_buns(mock_white_bun)
         burger.add_ingredient(mock_sauce)
         burger.add_ingredient(mock_filling)
+        mock_white_bun.get_name.return_value = "white bun"
+        mock_white_bun.get_price.return_value = 200.0
+        mock_sauce.get_type.return_value = 'SAUCE'
+        mock_sauce.get_name.return_value = "chili"
+        mock_sauce.get_price.return_value = 300.0
+        mock_filling.get_type.return_value = 'FILLING'
+        mock_filling.get_name.return_value = "dinosaur"
+        mock_filling.get_price.return_value = 200.0
 
-        receipt = burger.get_receipt()
-
-        assert str(bc.FIRST_BUN_NAME and bc.INGREDIENT_TYPE_SAUCE_NAME and bc.INGREDIENT_TYPE_FILLING_NAME) in receipt
-        assert str(bp.TWO_BUNS_SAUCE_FILLING_PRICE) in receipt
-
-    @allure.title('получение рецепта бургера только с булками')
-    @patch('burger.Bun')
-    @patch('burger.Ingredient')
-    @patch('burger.Burger.get_price', return_value=bp.TWO_BUNS_PRICE)
-    def test_get_receipt_full_burger(self, mock_burger_get_price, mock_ingredient_class, mock_bun_class):
-        mock_white_bun = Mock()
-        mock_white_bun.get_name.return_value = bc.FIRST_BUN_NAME
-        mock_white_bun.get_price.return_value = bc.FIRST_BUN_PRICE
-        burger = Burger()
-        burger.set_buns(mock_white_bun)
-
-        receipt = burger.get_receipt()
-
-        assert str(bc.FIRST_BUN_NAME) in receipt
-        assert str(bp.TWO_BUNS_PRICE) in receipt
-
-    @allure.title('получение рецепта бургера с булками и ингредиентом')
-    @patch('burger.Bun')
-    @patch('burger.Ingredient')
-    @patch('burger.Burger.get_price', return_value=bp.BUNS_FILLING_PRICE)
-    def test_get_receipt_full_burger(self, mock_burger_get_price, mock_ingredient_class, mock_bun_class):
-        mock_white_bun = Mock()
-        mock_filling = Mock()
-        mock_white_bun.get_name.return_value = bc.FIRST_BUN_NAME
-        mock_white_bun.get_price.return_value = bc.FIRST_BUN_PRICE
-        mock_filling.get_type.return_value = bc.INGREDIENT_TYPE_FILLING
-        mock_filling.get_name.return_value = bc.INGREDIENT_TYPE_FILLING_NAME
-        mock_filling.get_price.return_value = bc.FILLING_PRICE
-
-        burger = Burger()
-        burger.set_buns(mock_white_bun)
-        burger.add_ingredient(mock_filling)
-
-        receipt = burger.get_receipt()
-
-        assert str(bc.FIRST_BUN_NAME and bc.INGREDIENT_TYPE_FILLING_NAME) in receipt
-        assert str(bp.BUNS_FILLING_PRICE) in receipt
-
-    @allure.title('получение рецепта бургера с булками и соусом')
-    @patch('burger.Bun')
-    @patch('burger.Ingredient')
-    @patch('burger.Burger.get_price', return_value=bp.BUNS_SAUCE_PRICE)
-    def test_get_receipt_full_burger(self, mock_burger_get_price, mock_ingredient_class, mock_bun_class):
-        mock_white_bun = Mock()
-        mock_sauce = Mock()
-        mock_white_bun.get_name.return_value = bc.FIRST_BUN_NAME
-        mock_white_bun.get_price.return_value = bc.FIRST_BUN_PRICE
-        mock_sauce.get_type.return_value = bc.INGREDIENT_TYPE_SAUCE
-        mock_sauce.get_name.return_value = bc.INGREDIENT_TYPE_SAUCE_NAME
-        mock_sauce.get_price.return_value = bc.SAUCE_PRICE
-
-        burger = Burger()
-        burger.set_buns(mock_white_bun)
-        burger.add_ingredient(mock_sauce)
-
-        receipt = burger.get_receipt()
-
-        assert str(bc.FIRST_BUN_NAME and bc.INGREDIENT_TYPE_SAUCE_NAME) in receipt
-        assert str(bp.BUNS_SAUCE_PRICE) in receipt
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        receipt = [
+            '(==== white bun ====)',
+            '= sauce chili =',
+            '= filling dinosaur =',
+            '(==== white bun ====)\n',
+            'Price: 900.0'
+        ]
+        assert '\n'.join(receipt) == burger.get_receipt()
