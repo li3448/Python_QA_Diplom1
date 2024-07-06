@@ -4,14 +4,13 @@ from praktikum.database import Database
 
 def test_available_buns(burger, mok_bun):
     burger.set_buns(mok_bun)
-    burger = Database()
-    burger.available_buns()
-    assert mok_bun not in burger.buns
+    database = Database()
+    database.available_buns()
+    assert mok_bun not in database.buns
 
 
-#
 def test_available_ingredients(burger, mok_ingredient):
     burger.add_ingredient(mok_ingredient)
-    burger = Database()
-    burger.available_ingredients()
-    assert mok_ingredient not in burger.ingredients
+    database = Database()
+    database.available_ingredients()
+    assert mok_ingredient not in database.ingredients
