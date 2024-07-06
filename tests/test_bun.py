@@ -2,12 +2,12 @@ from praktikum.bun import Bun
 
 
 def test_get_name():
-    bulka = Bun('Rufl', 70)
-    bulka.get_name()
-    assert 'rtyh' == bulka.name
+    burger = Bun('Rufl', 70)
+    name = burger.get_name()
+    assert 'Rufl' == name
 
 
 def test_get_price():
-    bulka = Bun('Rufl', 70)
-    bulka.get_price()
-    assert 70 == bulka.price
+    burger = Bun('Rufl', 70)
+    price = burger.get_price()
+    assert 70 == price
