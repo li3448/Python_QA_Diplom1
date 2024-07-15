@@ -6,6 +6,7 @@ from praktikum.ingredient_types import INGREDIENT_TYPE_SAUCE, INGREDIENT_TYPE_FI
 class TestIngredient:
 #Проверка создания ингредиента
     def test_ingredient_creation(self, sauce):
+         sauce = Ingredient("hot sauce")
         assert sauce.type == INGREDIENT_TYPE_SAUCE
         assert sauce.name == "hot sauce"
         assert sauce.price == 100
