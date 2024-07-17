@@ -2,6 +2,7 @@ class TestBurger:
 
 #Проверка создания пустого бургера без булочки и ингридиентов
     def test_create_burger(self, burger):
+        burger = Burger()
         assert burger.bun is None
         assert burger.ingredients == []
 #Добавление булочки
@@ -21,7 +22,9 @@ class TestBurger:
         full_burger.move_ingredient(0, 1)
         assert full_burger.ingredients[1] == mock_sauce
 #Получение цены булочки с ингредиентами
-    def test_get_full_price_burger(self, full_burger):
+    def test_get_full_price_burger(self, full_burger, mock_bun, mock_sauce, mock_filling):
+    expected_price = mock_bun.get_price.return_value + mock_sauce.get_price.return_value + mock_filling.get_price.return_value
+    assert full_burger.get_price() == expected_price
         assert full_burger.get_price() == 800
 #Получение чека
     def test_get_receipt_burger(self, full_burger):
